@@ -1,0 +1,69 @@
+- [x] Create a new repo: `npx create-next-app@latest googahlini-landing --ts --eslint --src-dir --app --tailwind` 
+- [x] Run and confirm dev server: `npm run dev` at [http://localhost:3000](http://localhost:3000). (Running at http://localhost:3001) 
+- [x] Install Tailwind per Next.js guide; ensure `tailwind.config.ts` + `postcss.config.mjs` exist and `app/globals.css` imports Tailwind. (Note: tailwind.config.ts missing but postcss.config.mjs exists and globals.css imports Tailwind v4) 
+- [x] Initialize shadcn/ui: `npx shadcn@latest init` and commit the generated `components.json`. 
+- [x] Add shadcn/ui primitives: `npx shadcn@latest add button card input textarea badge sheet navigation-menu dialog accordion tabs form separator` (adjust as needed). 
+- [x] Verify business facts for copy: name, address, phone, hours (MapQuest, Yelp, FB). 
+- [x] Lock canonical details in `content/site.ts`: `name`, `tagline`, `phone: +1-267-588-9191`, `address: 3605 Chapel Rd, Newtown Square, PA 19073`, `hours` from latest sources. 
+- [x] Define IA in `content/sections.ts`: Hero, Featured (Boards, Gifts, Events), Gallery, B2B, Testimonials, Location & Hours, Contact.
+- [x] Choose modern, not-cartoon palette in CSS variables (`--primary`: deep cocoa; `--accent`: restrained candy pink; neutrals for background/surface).
+- [x] Install fonts with `next/font` (e.g., `Inter` + `Playfair Display` or similar); wire in `app/layout.tsx`. (Using Geist Sans + Geist Mono) 
+- [x] Apply fonts via CSS variables and Tailwind theme extension for consistent typography. 
+- [x] Create `app/layout.tsx` with `<html lang="en">` and `metadata` export. 
+- [x] Configure global CSS tokens in `app/globals.css` (colors, radii, spacing), keeping high contrast and subtle candy accent. (Basic setup done with --background/--foreground variables)
+- [x] Build `components/site-header.tsx` using shadcn `navigation-menu` + `sheet` for mobile; include CTA buttons "Order gifts" and "Book candy bar". 
+- [x] Build `components/site-footer.tsx` with address, phone, hours, and social links.
+- [x] Add `components/hero.tsx` with headline, subhead, primary CTA (Order), secondary CTA (B2B inquiry), and a product photo placeholder. 
+- [x] Create `components/feature-cards.tsx` (shadcn `card`) for Chocolate Boards, Candy Gifts & Baskets, Event Candy Bars. 
+- [x] Create `components/gallery.tsx` (responsive grid of optimized `<Image>` items). 
+- [x] Create `components/testimonials.tsx` using `accordion` or `tabs` for compact quotes. 
+- [x] Create `components/b2b-strip.tsx` describing office gifting and event setups; add CTA to contact form.
+- [x] Create `components/location-hours.tsx` with hours list and an embedded map; ensure data matches latest sources. 
+- [x] Scaffold pages: `app/page.tsx` (landing), `app/privacy/page.tsx`, `app/terms/page.tsx`.
+- [x] Implement `app/page.tsx` composing Hero → FeatureCards → Gallery → B2B → Testimonials → LocationHours → Footer.
+- [x] Add `components/contact-form.tsx` using Next Server Actions for email/inquiry handling. 
+- [x] Create `app/actions/sendInquiry.ts` with `"use server"`; parse and validate fields (name, email, phone, message, service). 
+- [x] Add basic Zod validation for inputs; return field-level errors to form state. 
+- [x] If not using Server Actions, add `app/api/contact/route.ts` (POST) as a Route Handler to forward mail via your provider.
+- [x] Prevent `page.tsx` and `route.ts` in the same folder; place `route.ts` under `app/api/contact/route.ts`.
+- [x] Add spam protection: honeypot field + minimum message length before enabling submit.
+- [x] Configure SEO meta in `app/layout.tsx` with Next Metadata API (title template, description, `openGraph`, `twitter`). 
+- [x] Generate OG image (static or dynamic) and wire via `generateMetadata` or file conventions. 
+- [x] Add `robots.txt` and `sitemap.xml` routes if needed.
+- [x] Implement Local Business JSON-LD in `app/page.tsx` (`<script type="application/ld+json">`), including `name`, `address`, `telephone`, `openingHours`, `image`, `geo`. 
+- [x] Confirm hours before encoding `openingHours`.
+- [x] Prefer `LocalBusiness` subtype (e.g., `Store` or `FoodEstablishment`) instead of separate `Organization`.
+- [x] Optimize images: use `next/image`, set `width/height`, alt text, and modern formats; configure remotePatterns if using external hosts. 
+- [x] Add `public/images/` with compressed assets; generate responsive crops for hero and gallery.
+- [x] Load fonts with `next/font/google` or local fonts; avoid layout shift; configure subsets and display. 
+- [x] Extend Tailwind theme for typography scale (h1–h6, lead, small) consistent with candy-shop vibe yet modern.
+- [x] Use subtle gradients and glassy cards; avoid cartoon illustrations; prefer crisp product photography.
+- [x] Build `components/announcement-bar.tsx` for seasonal promos (e.g., Halloween, Easter).
+- [x] Build `components/hours-badge.tsx` that reflects open/closed state based on local time and `openingHours`.
+- [x] Add `components/cta-bar.tsx` with phone `tel:` link and "Get a quote" button.
+- [ ] Add `lib/analytics.ts` (optional Vercel Analytics) and include in `layout`. 
+- [x] Create `app/opengraph-image.tsx` to render branded OG image with store name and address. 
+- [x] Add favicon and app icons in `app/icon.png` and `app/apple-icon.png`; Next will auto-wire. 
+- [x] Configure nav items in `content/nav.ts`: Home, Gifts, Candy Boards, Events, Contact.
+- [ ] Draft copy for each section: short, punchy sentences; no sugary clichés.
+- [ ] Verify offerings from public sources: “candy gifts,” “chocolate charcuterie,” “customized favors,” “event candy bars.” 
+- [ ] Add `components/pricing-cards.tsx` with starting prices for gift baskets and event setups (can hide until confirmed).
+- [ ] Implement B2B inquiry flow with a dedicated `app/b2b/page.tsx` and the same form action.
+- [ ] Add `app/thanks/page.tsx` and redirect after successful form submission.
+- [ ] Add `rate-limit` and `origin` checks in route handler to deter abuse. 
+- [ ] Ensure accessibility: semantic headings, focus states on all interactive components, labels for inputs.
+- [ ] Add E2E happy-path check with Playwright (optional).
+- [ ] Test responsive breakpoints: 360, 768, 1024, 1440.
+- [ ] Lighthouse pass: performance, accessibility, best practices, SEO ≥ 90.
+- [ ] Replace placeholder content with verified hours and high-quality photos; re-check hours periodically. 
+- [ ] Add `VERCEL_PROJECT_ID` and deploy preview to Vercel via Git; connect repo and import. 
+- [ ] Set environment variables in Vercel dashboard for mail provider, rate limit secret, etc. 
+- [ ] Configure custom domain (e.g., googahlinis.com) in Vercel; set redirect from apex to `www`. 
+- [ ] Verify structured data with Rich Results Test and fix warnings. 
+- [ ] Submit sitemap in Google Search Console; verify domain ownership. 
+- [ ] Create a “Seasonal” preset in `content/sections.ts` for quick homepage swaps (e.g., Valentine’s Day).
+- [ ] Add `@/components/ui/toast` feedback for form submission and errors. 
+- [ ] Add `loading.tsx` and `error.tsx` for the home route to improve UX.
+- [ ] Review copy against sources; ensure no claims contradict public listings (products, hours, address). 
+- [ ] Final pass for “modern candy shop” look: clean typesetting, ample whitespace, neutral surfaces, restrained accents, real product imagery.
+- [ ] Ship production build: `npm run build && npm start` locally; then promote the Vercel preview to production. 
