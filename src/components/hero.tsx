@@ -4,7 +4,7 @@ import Image from "next/image"
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20">
+    <section className="relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
@@ -22,9 +22,6 @@ export function Hero() {
               <Button size="lg" className="text-lg px-8">
                 {sections.hero.primaryCTA}
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8">
-                {sections.hero.secondaryCTA}
-              </Button>
             </div>
 
             {/* Trust Indicators */}
@@ -40,7 +37,7 @@ export function Hero() {
 
           {/* Hero Image */}
           <div className="relative">
-            <div className="aspect-square relative rounded-2xl overflow-hidden bg-gradient-to-br from-accent/20 to-secondary/30">
+            <div className="aspect-square relative rounded-2xl overflow-hidden bg-muted/10">
               <Image
                 src="https://placehold.co/600x600/8B4513/FFFFFF?text=Premium+Chocolate+Board"
                 alt="Beautiful artisanal chocolate charcuterie board with variety of premium chocolates, nuts, and treats"
@@ -52,9 +49,6 @@ export function Hero() {
               />
             </div>
 
-            {/* Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/30 rounded-full blur-xl"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary/40 rounded-full blur-xl"></div>
           </div>
         </div>
       </div>

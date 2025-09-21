@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import Instafeed from "instafeed.js";
 
-interface InstagramPost {
-  id: string;
-  caption: string;
-  media_url: string;
-  permalink: string;
-  timestamp: string;
-  media_type: string;
-}
+// interface InstagramPost {
+//   id: string;
+//   caption: string;
+//   media_url: string;
+//   permalink: string;
+//   timestamp: string;
+//   media_type: string;
+// }
 
 interface OEmbedResponse {
   html: string;

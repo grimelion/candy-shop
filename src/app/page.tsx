@@ -1,7 +1,6 @@
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
 import { FeatureCards } from "@/components/feature-cards";
-import { InstagramFeed } from "@/components/instagram-feed";
 import { PricingCards } from "@/components/pricing-cards";
 import { B2bStrip } from "@/components/b2b-strip";
 import { Testimonials } from "@/components/testimonials";

@@ -13,14 +13,14 @@ export const siteConfig = {
     sunday: "11:00 AM - 4:00 PM"
   },
   offerings: [
-    "Wide selection of classic and artisanal candies",
-    "Rare candy flavors (Sour Patch Kids Pineapple, Grape, Pink Lemonade)",
-    "Fresh chocolates and confections",
-    "Custom candy charcuterie boards",
-    "Cookies, pretzels, and flavored nuts",
-    "Gourmet popcorn varieties",
-    "Hard-to-find specialty treats",
-    "Custom orders and special requests"
+    "Penny candy selection with classic favorites like Pop Rocks and Sour Patch Kids",
+    "Artisanal treats including jelly-coated chocolate rings and exquisite dark chocolates",
+    "Custom candy and chocolate charcuterie boards",
+    "Personalized gift baskets for any occasion",
+    "Candy bar experience for taste testing with friends",
+    "Old-time candy favorites and nostalgic treats",
+    "Custom candy favors for events and celebrations",
+    "Wide variety of chocolates and confections"
   ],
   serviceArea: [
     "Newtown Square, PA",

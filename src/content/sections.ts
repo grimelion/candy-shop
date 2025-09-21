@@ -2,8 +2,7 @@ export const sections = {
   hero: {
     headline: "Handcrafted Confections That Wow",
     subhead: "Premium chocolate boards, custom candy gifts, and unforgettable event setups. Made fresh. Delivered perfect.",
-    primaryCTA: "Order Your Creation",
-    secondaryCTA: "Partner With Us"
+    primaryCTA: "Order Your Creation"
   },
   featured: {
     title: "What We Create",
