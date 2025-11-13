@@ -72,7 +72,7 @@
   );
 
   /* Font Sizes */
-  --fs-hero: clamp(2.5rem, 5vw, 4rem);
+  --fs-hero: clamp(3rem, 6vw, 5rem);
   --fs-h1: clamp(2rem, 4vw, 3rem);
   --fs-h2: clamp(1.5rem, 3vw, 2.25rem);
   --fs-h3: clamp(1.25rem, 2.5vw, 1.75rem);
@@ -219,6 +219,7 @@
     font-family: var(--font-script);
     font-size: var(--fs-hero);
     line-height: 1.2;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   }
 
   .section-title {

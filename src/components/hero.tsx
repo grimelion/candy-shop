@@ -6,7 +6,7 @@ export function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://placehold.co/1920x1080/8B4513/FFFFFF?text=Chocolate+Charcuterie+Board"
+          src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=1920&q=80"
           alt="Beautiful artisanal chocolate charcuterie board"
           fill
           className="object-cover"

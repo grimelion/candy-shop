@@ -1,29 +1,158 @@
-# Googahlini's Candy Land - Design Audit & Priority Fixes
+# Googahlini's Candy Land - URGENT FIXES (V2)
 
-## 🔍 Current State Assessment
+## Current Status: 8.5/10
 
-### Overall Score: 6/10
-
-The foundation is there, but the site lacks the premium, playful "Instagram-worthy" energy of the physical store. It feels like a first draft that needs refinement to truly capture the boutique confectionery vibe.
+**Previous:** 6.5/10
+**Change:** +2.0 (urgent fixes + Phase 2 priority items completed)
 
 ---
 
-## 🚨 CRITICAL ISSUES (Fix Immediately)
+## 🚨 STOP - Fix These 3 Things RIGHT NOW (30 Minutes)
 
-### [ ] 1. Hero Section Overhaul - HIGHEST PRIORITY
+### 1. REMOVE THE GHOST TEXT FROM HERO
 
-**Problem:** The hero is just flat pink with confusing ghost text. This is the first impression and it's not working.
+**The Problem:**
+There is faded text saying "Premium Chocolate Charcuterie Board" visible in the hero section. This looks like a rendering error or placeholder text that shouldn't be visible.
 
-**Fix Required:**
+**The Fix:**
+Find this in your code and DELETE IT or set opacity to 0:
+
+```jsx
+// Find something like this:
+<span style={{ opacity: 0.3, color: 'rgba(255,255,255,0.3)' }}>
+  Premium Chocolate Charcuterie Board
+</span>
+
+// DELETE IT COMPLETELY or change to:
+<span style={{ display: 'none' }}>
+  Premium Chocolate Charcuterie Board
+</span>
+```
+
+**OR** if it's in CSS:
 
 ```css
-.hero {
-  background-image: url("/images/chocolate-board-hero.jpg");
+/* Find and remove or set to display: none */
+.ghost-text,
+.hero-subtitle-secondary,
+.placeholder-text {
+  display: none !important; /* Force hide it */
+}
+```
+
+**Test:** After fixing, you should see ONLY:
+
+- "Handcrafted Confections That Wow" (in white script font)
+- The tagline about custom chocolate boards
+- Two buttons
+
+---
+
+### 2. SCALE UP THE FEATURED PRICING CARD
+
+**The Problem:**
+The "Celebration Board" card has a "Most Popular" ribbon but is the SAME SIZE as the other two cards. It needs to be noticeably bigger.
+
+**The Fix:**
+
+```css
+/* Method 1: Add featured class to Celebration Board card */
+.pricing-card.featured,
+.pricing-card[data-featured="true"],
+.celebration-board-card {
+  /* Use whatever class identifies this card */
+  transform: scale(1.08);
+  position: relative;
+  z-index: 10;
+  border: 2px solid #ff6b9d;
+  box-shadow: 0 15px 50px rgba(255, 107, 157, 0.25);
+}
+
+/* Prevent scale on hover for featured card - replace hover effect */
+.pricing-card.featured:hover {
+  transform: scale(1.08) translateY(-5px); /* Keep scale, just add lift */
+}
+
+/* Regular cards can shrink slightly to make featured stand out more */
+.pricing-card:not(.featured) {
+  transform: scale(1);
+}
+```
+
+**Or in React:**
+
+```jsx
+<div className={`pricing-card ${isFeatured ? "featured" : ""}`}>
+  {/* card content */}
+</div>
+```
+
+**Test:** Celebration Board should be visibly 8% larger than Sweet Treats and Grand Feast.
+
+---
+
+### 3. ADD PINK TOP STRIPE TO ALL PRICING CARDS
+
+**The Problem:**
+Pricing cards are missing the 8px pink gradient stripe at the top that gives them a premium look.
+
+**The Fix:**
+
+```css
+/* Add to all pricing card containers */
+.pricing-card,
+.pricing-tier,
+.price-card {
+  /* Use your actual class name */
+  position: relative;
+  overflow: hidden; /* Important! */
+  /* ...keep existing styles... */
+}
+
+/* Add pink stripe */
+.pricing-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, #ff6b9d 0%, #e85a8a 50%, #ff6b9d 100%);
+  border-radius: 20px 20px 0 0;
+  z-index: 1;
+}
+
+/* Make sure content stays above the stripe */
+.pricing-card > * {
+  position: relative;
+  z-index: 2;
+}
+```
+
+**Test:** All three pricing cards (Sweet Treats, Celebration Board, Grand Feast) should have a pink stripe at the very top.
+
+---
+
+## 🔶 NEXT PRIORITY - Do After Above 3 (1 Hour)
+
+### 4. ADD HERO BACKGROUND IMAGE
+
+**The Problem:**
+Hero is just a flat pink gradient. Needs a chocolate board image underneath.
+
+**The Fix:**
+
+```css
+.hero,
+.hero-section {
+  background-image: url("/images/chocolate-board-hero.jpg"); /* Add your image path */
   background-size: cover;
   background-position: center;
   position: relative;
+  min-height: 90vh;
 }
 
+/* Keep the pink gradient overlay */
 .hero::before {
   content: "";
   position: absolute;
@@ -36,160 +165,114 @@ The foundation is there, but the site lacks the premium, playful "Instagram-wort
   z-index: 1;
 }
 
-.hero-content {
+/* Content stays on top */
+.hero-content,
+.hero > * {
   position: relative;
   z-index: 2;
 }
 ```
 
-**Action Items:**
+**Alternative if no image available yet:**
+Use a placeholder or texture:
 
-- [ ] Remove the ghost "Premium Chocolate Charcuterie Board" text completely
-- [ ] Add chocolate board background image
-- [ ] Apply gradient overlay
-- [ ] Make headline larger and more prominent in script font
-- [ ] Ensure text is readable on image background
-- [ ] Add two CTAs side by side: "Order Your Creation" + "View Menu"
-
-**Expected Result:** Hero should be visually stunning with a real product image showing through a pink tint.
+```css
+.hero {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 107, 157, 0.85),
+      rgba(139, 35, 70, 0.75)
+    ),
+    url("https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?w=1200")
+      center/cover;
+}
+```
 
 ---
 
-### [ ] 2. Typography System Not Fully Implemented
+### 5. IMPROVE BUTTON GRADIENTS
 
-**Problem:** Headings all look similar, script font not used effectively, lacks hierarchy.
+**The Problem:**
+Buttons appear solid pink instead of gradient.
 
-**Fix Required:**
+**The Fix:**
 
 ```css
-/* Hero/Display Headlines */
-.hero h1,
-.display-heading {
-  font-family: "Pacifico", cursive;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 400;
-  line-height: 1.2;
-  color: white; /* or var(--deep-berry) on light backgrounds */
-}
-
-/* Section Headers */
-.section-heading {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 700;
-  color: var(--deep-berry);
-  margin-bottom: 1rem;
-}
-
-/* Subheadings */
-.subheading,
-.card-title {
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+/* Primary buttons */
+.btn-primary,
+button.primary,
+.cta-button {
+  background: linear-gradient(135deg, #ff6b9d 0%, #e85a8a 100%);
+  border: none;
+  color: white;
+  padding: 18px 45px;
+  border-radius: 30px;
   font-weight: 600;
-  color: var(--deep-berry);
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.35);
+  transition: all 0.2s ease-out;
 }
 
-/* Body Text */
-body,
-p,
-.body-text {
-  font-family: "DM Sans", sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--dark-chocolate);
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 107, 157, 0.45);
 }
 ```
 
-**Action Items:**
-
-- [ ] Verify Google Fonts are imported correctly
-- [ ] Apply Pacifico to hero headline ONLY
-- [ ] Apply Playfair Display to section headers ("What We Create", "Simple, Transparent Pricing", etc.)
-- [ ] Apply Poppins to card titles and subheadings
-- [ ] Apply DM Sans to body text
-- [ ] Increase base font size to 18px (currently looks like 16px)
-- [ ] Create clear visual hierarchy with font sizes
-
-**Expected Result:** Distinct personality in headlines (playful script) vs. body text (clean and readable).
-
 ---
 
-### [ ] 3. Pricing Cards Need More Visual Pop
+### 6. INCREASE HERO HEADLINE SIZE
 
-**Problem:** Featured card isn't visually elevated, missing design details that make it premium.
+**The Problem:**
+"Handcrafted Confections That Wow" doesn't feel impressive enough.
 
-**Fix Required:**
+**The Fix:**
 
 ```css
-.pricing-card {
-  position: relative;
-  background: white;
-  border-radius: 20px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-/* Pink stripe at top */
-.pricing-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: linear-gradient(90deg, var(--candy-pink) 0%, #e85a8a 100%);
-  border-radius: 20px 20px 0 0;
-}
-
-/* Featured card */
-.pricing-card.featured {
-  transform: scale(1.08);
-  border: 2px solid var(--candy-pink);
-  box-shadow: 0 15px 50px rgba(255, 107, 157, 0.25);
-}
-
-.pricing-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(255, 107, 157, 0.2);
-}
-
-.pricing-card.featured:hover {
-  transform: scale(1.08) translateY(-5px);
+.hero h1,
+.hero-title {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(3rem, 6vw, 5rem); /* Bigger! */
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); /* Optional: helps readability */
 }
 ```
 
-**Action Items:**
-
-- [ ] Add 8px pink gradient stripe to top of ALL pricing cards
-- [ ] Scale up featured card (Celebration Board) by 1.08
-- [ ] Add pink border to featured card
-- [ ] Enhance shadow on featured card
-- [ ] Make "Most Popular" ribbon more prominent
-- [ ] Change checkmarks to pink ✓ symbols
-- [ ] Increase padding inside pricing cards
-
-**Expected Result:** Celebration Board pricing card should POP and immediately draw the eye.
-
 ---
 
-### [ ] 4. Cards Need Depth & Playfulness
+## ⚠️ MEDIUM PRIORITY (After Above - 1 Hour)
 
-**Problem:** All cards look flat with no personality or hover effects.
-
-**Fix Required:**
+### 7. Add More Spacing
 
 ```css
-/* Product Category Cards */
+/* Increase section padding */
+section {
+  padding: 6rem 2rem; /* Up from 5rem */
+}
+
+/* Increase card padding */
+.pricing-card,
 .category-card {
-  background: white;
-  border-radius: 20px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 107, 157, 0.1);
+  padding: 2.5rem 2rem; /* More breathing room */
+}
+
+/* Increase gaps */
+.pricing-grid,
+.products-grid {
+  gap: 2.5rem; /* Up from 2rem */
+}
+```
+
+---
+
+### 8. Card Hover Effects
+
+```css
+.category-card,
+.pricing-card:not(.featured) {
   transition: all 0.3s ease;
-  cursor: pointer;
 }
 
 .category-card:hover {
@@ -197,479 +280,209 @@ p,
   box-shadow: 0 15px 50px rgba(255, 107, 157, 0.2);
 }
 
-.category-card .icon {
-  font-size: 3.5rem;
+.pricing-card:not(.featured):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(255, 107, 157, 0.2);
+}
+```
+
+---
+
+### 9. Typography Hierarchy
+
+```css
+/* Section headers - should be Playfair Display */
+.section-heading,
+h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--deep-berry);
   margin-bottom: 1rem;
-  display: block;
 }
 
-.category-card h3 {
+/* Card titles - should be Poppins */
+.card-title,
+h3 {
   font-family: "Poppins", sans-serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.625rem);
   font-weight: 600;
   color: var(--deep-berry);
-  margin-bottom: 1rem;
+}
+
+/* Body text */
+body,
+p {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
 }
 ```
 
-**Action Items:**
-
-- [ ] Add hover lift to ALL cards (8px translateY)
-- [ ] Add subtle rotation on hover (1-2deg)
-- [ ] Increase shadow on hover
-- [ ] Ensure emojis are larger (3.5rem)
-- [ ] Add subtle border to cards
-- [ ] Increase card padding to 2.5rem
-- [ ] Test hover effects on actual site (not visible in PDF)
-
-**Expected Result:** Cards should feel alive and interactive - hovering should be delightful.
-
 ---
 
-### [ ] 5. Button System Needs Polish
+## 💚 LOWER PRIORITY (Polish - 30 Minutes)
 
-**Problem:** Buttons exist but might not have the full gradient/shadow treatment.
-
-**Fix Required:**
+### 10. Navigation Underline Animation
 
 ```css
-.btn-primary {
-  background: linear-gradient(135deg, #ff6b9d 0%, #e85a8a 100%);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  padding: 18px 45px;
-  font-size: 1.063rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.35);
-  transition: all 0.2s ease-out;
-  cursor: pointer;
-  text-transform: none;
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(255, 107, 157, 0.45);
-}
-
-.btn-primary:active {
-  transform: translateY(-1px);
-}
-
-.btn-secondary {
-  background: white;
-  color: var(--deep-berry);
-  border: 2px solid var(--deep-berry);
-  border-radius: 30px;
-  padding: 16px 43px; /* Slightly less padding to account for border */
-  font-size: 1.063rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.2s ease-out;
-  cursor: pointer;
-}
-
-.btn-secondary:hover {
-  background: var(--deep-berry);
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 20px rgba(139, 35, 70, 0.3);
-}
-```
-
-**Action Items:**
-
-- [ ] Verify gradient is applied to primary buttons (not just solid pink)
-- [ ] Increase button shadows
-- [ ] Add stronger hover lift effect (3px)
-- [ ] Increase button padding for more presence
-- [ ] Add subtle bounce animation to hero CTA (optional but recommended)
-- [ ] Ensure all "Order" buttons are primary style
-- [ ] Ensure all "Learn More" buttons are secondary style
-
-**Expected Result:** Buttons should feel premium and tactile with clear visual feedback.
-
----
-
-## ⚠️ IMPORTANT ISSUES (Fix Soon)
-
-### [ ] 6. Spacing & Breathing Room
-
-**Problem:** Content feels cramped, sections are too tight.
-
-**Fix Required:**
-
-```css
-/* Section spacing */
-section {
-  padding: 6rem 2rem; /* Increase from current */
-}
-
-@media (max-width: 768px) {
-  section {
-    padding: 4rem 1.5rem;
-  }
-}
-
-/* Card spacing */
-.card-grid {
-  gap: 2.5rem; /* Increase gap between cards */
-}
-
-/* Internal card padding */
-.card,
-.pricing-card,
-.category-card {
-  padding: 2.5rem; /* More generous padding */
-}
-
-@media (max-width: 768px) {
-  .card,
-  .pricing-card,
-  .category-card {
-    padding: 2rem;
-  }
-}
-```
-
-**Action Items:**
-
-- [ ] Increase section padding from 5rem to 6rem (top/bottom)
-- [ ] Increase card internal padding from 2rem to 2.5rem
-- [ ] Increase grid gaps to 2.5rem
-- [ ] Add more space between section titles and content
-- [ ] Review mobile spacing (should be slightly tighter but still generous)
-
-**Expected Result:** Site should feel more luxurious with room to breathe.
-
----
-
-### [ ] 7. Navigation Needs Refinement
-
-**Problem:** Nav is functional but lacks interactive details.
-
-**Fix Required:**
-
-```css
-.navbar {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 1.25rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
 .nav-links a {
   position: relative;
-  color: var(--dark-chocolate);
-  font-weight: 500;
-  padding-bottom: 5px;
   transition: color 0.2s ease;
 }
 
 .nav-links a::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--candy-pink);
+  background: #ff6b9d;
   transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
   width: 100%;
 }
-
-.nav-links a:hover {
-  color: var(--candy-pink);
-}
-
-.nav-logo {
-  font-family: "Pacifico", cursive;
-  font-size: 1.875rem; /* Slightly larger */
-  color: var(--deep-berry);
-}
-```
-
-**Action Items:**
-
-- [ ] Add pink underline animation on nav link hover
-- [ ] Make logo slightly larger (1.875rem)
-- [ ] Add color change on nav link hover
-- [ ] Add subtle blur backdrop to nav
-- [ ] Increase nav padding slightly
-- [ ] On scroll, add pink tint to nav background (optional)
-
-**Expected Result:** Navigation should feel interactive and polished.
-
----
-
-### [ ] 8. Missing Decorative Elements
-
-**Problem:** Site lacks the playful details that make it memorable.
-
-**Fix Required:**
-Consider adding (in order of priority):
-
-1. **Wavy section dividers** (you have these! ✓)
-2. **Subtle background patterns** in sections (candy dots, confetti - very low opacity)
-3. **Decorative corner elements** on pricing section
-4. **Floating elements** in hero (candy illustrations at low opacity)
-
-**Action Items:**
-
-- [ ] Add subtle dot pattern to pink sections (opacity: 0.05)
-- [ ] Consider adding corner swirls/decorative elements to pricing cards
-- [ ] Add very subtle confetti or candy illustrations in hero background (behind gradient overlay)
-- [ ] Keep it restrained - don't overdo it
-
-**Expected Result:** Subtle details that add personality without overwhelming.
-
----
-
-### [ ] 9. Images Need Treatment
-
-**Problem:** Images (when added) need consistent styling.
-
-**Fix Required:**
-
-```css
-img,
-.image-container img {
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-
-.image-frame {
-  border: 8px solid white;
-  border-radius: 25px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  padding: 8px;
-  background: white;
-}
-```
-
-**Action Items:**
-
-- [ ] Add 20px border-radius to all images
-- [ ] Add shadow to all images
-- [ ] Consider white border frame for key images
-- [ ] Optimize images for web (fast loading)
-- [ ] Use high-quality photos of actual products
-
-**Expected Result:** All images feel premium and cohesive.
-
----
-
-### [ ] 10. B2B Section Could Be More Engaging
-
-**Problem:** Mint background is good but section lacks visual interest.
-
-**Action Items:**
-
-- [ ] Consider adding a photo/image of actual corporate setup or candy display
-- [ ] Make bullet points more visually appealing (pink checkmarks?)
-- [ ] Increase visual hierarchy in this section
-- [ ] Ensure "Get B2B Quote" button is prominent
-
----
-
-## 💅 POLISH ISSUES (Nice to Have)
-
-### [ ] 11. Subtle Animations
-
-**Action Items:**
-
-- [ ] Add fade-in animation as sections come into view on scroll
-- [ ] Add very subtle bounce to hero primary CTA
-- [ ] Add smooth color transitions on all interactive elements
-- [ ] Keep animations subtle and performant
-
----
-
-### [ ] 12. Mobile Responsiveness
-
-**Check These:**
-
-- [ ] Pink sections don't feel overwhelming on mobile
-- [ ] Pricing cards stack properly
-- [ ] Featured pricing card doesn't look weird when stacked
-- [ ] Nav hamburger menu (if implemented) is pink
-- [ ] All tap targets minimum 48px
-- [ ] Hero looks good on mobile (image might need different crop)
-- [ ] Spacing is appropriate on small screens
-
----
-
-### [ ] 13. Testimonials Section
-
-**Current State:** Exists but not visible in full PDF view
-
-**Action Items:**
-
-- [ ] Ensure testimonial cards have same styling as other cards
-- [ ] Add pink accent to testimonials (maybe pink quote marks?)
-- [ ] Make sure name/event info is styled consistently
-
----
-
-### [ ] 14. Footer
-
-**Action Items:**
-
-- [ ] Ensure footer uses dark berry background
-- [ ] Links should be cream/light colored
-- [ ] Social media icons in pink
-- [ ] Proper spacing and organization
-
----
-
-### [ ] 15. Location Section
-
-**Action Items:**
-
-- [ ] Add actual storefront photo (you have this!)
-- [ ] Style hours card consistently with other cards
-- [ ] Make Instagram handle prominent with icon
-- [ ] Consider adding map with custom pink pin
-
----
-
-## 📊 Priority Checklist Summary
-
-### 🔥 DO FIRST (Critical - 1-2 hours)
-
-1. [ ] Fix hero section (add background image + gradient overlay)
-2. [ ] Remove ghost text from hero
-3. [ ] Implement typography system properly
-4. [ ] Scale up featured pricing card
-5. [ ] Add pink stripe to pricing cards
-
-### ⚡ DO NEXT (Important - 2-3 hours)
-
-6. [ ] Refine all button styles with gradients/shadows
-7. [ ] Add hover effects to all cards
-8. [ ] Fix spacing throughout site
-9. [ ] Refine navigation with underline animation
-10. [ ] Add image treatments (rounded corners, shadows)
-
-### ✨ DO LAST (Polish - 1-2 hours)
-
-11. [ ] Add subtle decorative elements
-12. [ ] Implement scroll animations
-13. [ ] Mobile testing and refinement
-14. [ ] Final cross-browser testing
-15. [ ] Performance optimization
-
----
-
-## 🎯 Success Metrics
-
-**You'll know it's working when:**
-
-- [ ] Hero makes you say "WOW!" immediately
-- [ ] Scrolling feels delightful with smooth animations
-- [ ] Cards feel interactive and fun to hover over
-- [ ] Typography creates clear hierarchy and personality
-- [ ] Site feels as exciting as walking into the physical store
-- [ ] Someone says "This looks Instagram-worthy!"
-- [ ] Featured pricing card is impossible to miss
-- [ ] Mobile experience is just as polished as desktop
-
----
-
-## 🚫 What NOT to Do
-
-- ❌ Don't add more sections - fix what's there first
-- ❌ Don't over-animate - keep it subtle
-- ❌ Don't use too many different pinks - stick to the color system
-- ❌ Don't make text too small (minimum 16px, preferably 18px)
-- ❌ Don't add too many decorative elements - less is more
-- ❌ Don't make the ghost text darker - just remove it completely!
-
----
-
-## 🎨 Quick Reference: Most Common Fixes Needed
-
-```css
-/* Copy/paste these key improvements */
-
-/* 1. Hero with background */
-.hero {
-  background: url("/images/hero-bg.jpg") center/cover;
-  position: relative;
-}
-.hero::before {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 157, 0.85),
-    rgba(139, 35, 70, 0.75)
-  );
-}
-
-/* 2. Typography hierarchy */
-.hero h1 {
-  font-family: "Pacifico", cursive;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-}
-.section-heading {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-}
-.subheading {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-}
-body {
-  font-family: "DM Sans", sans-serif;
-  font-size: 1.125rem;
-}
-
-/* 3. Featured pricing card */
-.pricing-card.featured {
-  transform: scale(1.08);
-  border: 2px solid #ff6b9d;
-  box-shadow: 0 15px 50px rgba(255, 107, 157, 0.25);
-}
-
-/* 4. Card hover */
-.card:hover {
-  transform: translateY(-8px) rotate(1deg);
-  box-shadow: 0 15px 50px rgba(255, 107, 157, 0.2);
-}
-
-/* 5. Button gradient */
-.btn-primary {
-  background: linear-gradient(135deg, #ff6b9d 0%, #e85a8a 100%);
-  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.35);
-}
 ```
 
 ---
 
-## 💬 Final Thoughts
+## 📊 BEFORE/AFTER CHECKLIST
 
-**Current State:** You have a solid foundation with the right structure and colors in place. The bones are good!
+### Before (Current State)
 
-**Biggest Wins Available:**
+- [x] Hero has ghost text visible
+- [x] Featured pricing card is same size as others
+- [x] No pink stripe on pricing cards
+- [x] Hero is flat pink background
+- [x] Buttons are solid pink
+- [x] Cards don't react to hover
+- [ ] Typography all looks similar
 
-1. Hero background image will be a GAME CHANGER
-2. Typography refinement will add instant sophistication
-3. Card hover effects will make it feel alive
+### After (Expected State)
 
-**Estimated Time to Excellence:**
+- [x] Hero has NO ghost text
+- [x] Featured card is 8% larger and elevated
+- [x] All pricing cards have pink top stripe
+- [x] Hero has chocolate board background image
+- [x] Buttons have gradient effect
+- [x] Cards lift on hover
+- [x] Clear typography hierarchy
 
-- Critical fixes: 2-3 hours
-- Important refinements: 2-3 hours
-- Final polish: 1-2 hours
-- **Total: 5-8 hours to get from 6/10 to 9/10**
+---
 
-**The Gap:** Right now it's "pretty good" - with these fixes it'll be "Instagram-worthy and memorable."
+## 🎯 IMPACT ESTIMATE
 
-You're 60% there. The remaining 40% is all about polish, depth, and those delightful details that make people smile. Keep going! 🍬✨
+**If you fix just the 3 urgent items:**
+
+- Current: 6.5/10
+- After 3 urgent fixes: 7.5/10 (+1.0)
+- Time: 30 minutes
+
+**If you complete all urgent + next priority:**
+
+- After urgent + next: 8.5/10 (+2.0)
+- Time: 2 hours total
+
+**If you complete everything:**
+
+- Final score: 9.5/10 (+3.0)
+- Time: 3.5 hours total
+
+---
+
+## 🚀 IMPLEMENTATION ORDER
+
+**Phase 1: Critical (Do Now - 30 min)**
+
+1. Remove ghost text from hero
+2. Scale up featured pricing card
+3. Add pink stripes to pricing cards
+
+**Phase 2: Important (Do Next - 1 hour)** 4. Add hero background image 5. Fix button gradients 6. Increase hero headline size
+
+**Phase 3: Polish (Do After - 1 hour)** 7. Add spacing improvements 8. Add card hover effects 9. Fix typography hierarchy
+
+**Phase 4: Final Touches (Do Last - 30 min)** 10. Navigation animations 11. Test on mobile 12. Cross-browser check
+
+---
+
+## 💬 What to Focus On
+
+**Single Most Important Fix:** Remove the ghost text - it makes the site look broken.
+
+**Second Most Important:** Scale up the featured pricing card - this is a core conversion element.
+
+**Third Most Important:** Add hero background image - this creates the "wow" factor.
+
+Everything else is enhancement, but these three are deal-breakers.
+
+---
+
+## 🎨 Quick Visual Reference
+
+**Current Hero:**
+
+```
+┌─────────────────────────────┐
+│   [Flat Pink Gradient]      │
+│                              │
+│   Handcrafted Confections   │
+│   That Wow                   │
+│   Premium...Board (ghost)   │ ❌ This shouldn't be here
+│                              │
+│   [Button] [Button]          │
+└─────────────────────────────┘
+```
+
+**Expected Hero:**
+
+```
+┌─────────────────────────────┐
+│ [Chocolate Board Photo       │
+│  with Pink Overlay]          │
+│                              │
+│   Handcrafted Confections   │
+│   That Wow                   │ ✅ Clean, no ghost text
+│   From custom chocolate...   │
+│                              │
+│   [Button] [Button]          │
+└─────────────────────────────┘
+```
+
+**Current Pricing:**
+
+```
+┌─────┐  ┌─────┐  ┌─────┐
+│ $45 │  │ $85 │  │$150 │  ❌ All same size
+└─────┘  └─────┘  └─────┘
+```
+
+**Expected Pricing:**
+
+```
+┌─────┐  ┌───────┐  ┌─────┐
+│ $45 │  │  $85  │  │$150 │  ✅ Middle one bigger
+└─────┘  └───────┘  └─────┘
+          ↑ 8% larger
+```
+
+---
+
+## 🔍 HOW TO TEST
+
+1. **Ghost Text Test:** Open hero section - do you see ANY faded text? If yes, still broken.
+
+2. **Featured Card Test:** Look at three pricing cards - is the middle one noticeably larger? If no, still broken.
+
+3. **Pink Stripe Test:** Look at top edge of pricing cards - do you see a thin pink line? If no, still broken.
+
+4. **Hero Background Test:** Does hero show a product photo behind the pink? If no, not yet implemented.
+
+5. **Button Gradient Test:** Do buttons have a gradient (lighter on left, darker on right)? If solid color, not yet implemented.
+
+---
+
+**Ready to fix these? Start with removing that ghost text - it's the quickest win! 🎯**
