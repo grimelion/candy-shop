@@ -33,23 +33,23 @@ export function ContactForm({ defaultService, showTitle = true }: ContactFormPro
   }, [state])
 
   return (
-    <section className={showTitle ? "py-24 bg-background" : ""}>
-      <div className={showTitle ? "container mx-auto px-4" : ""}>
+    <section className={showTitle ? "bg-cream" : ""} id="contact" style={showTitle ? { paddingTop: '6rem', paddingBottom: '6rem' } : {}}>
+      <div className={showTitle ? "container mx-auto px-8" : ""}>
         {showTitle && (
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="section-title text-deep-berry mb-4" style={{ fontSize: "var(--fs-h2)" }}>
               Get In Touch
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-soft-gray max-w-2xl mx-auto">
               Ready to create something sweet? Tell us about your needs and we&apos;ll craft the perfect solution.
             </p>
           </div>
         )}
 
-        <Card className={showTitle ? "max-w-2xl mx-auto" : ""}>
+        <Card className={showTitle ? "max-w-2xl mx-auto card" : "card"}>
           <CardHeader>
-            <CardTitle>Send Us an Inquiry</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-deep-berry" style={{ fontFamily: "var(--font-heading)" }}>Send Us an Inquiry</CardTitle>
+            <CardDescription className="text-soft-gray">
               Fill out the form below and we&apos;ll get back to you within 24 hours.
             </CardDescription>
           </CardHeader>
@@ -161,13 +161,13 @@ export function ContactForm({ defaultService, showTitle = true }: ContactFormPro
                 )}
               </div>
 
-              <Button type="submit" size="lg" className="w-full" disabled={isPending}>
+              <button type="submit" className="btn-primary w-full" disabled={isPending}>
                 {isPending ? "Sending..." : "Send Inquiry"}
-              </Button>
+              </button>
 
-              <p className="text-sm text-muted-foreground text-center">
+              <p className="text-sm text-soft-gray text-center">
                 Prefer to call? Reach us at{" "}
-                <a href="tel:+12675889191" className="text-primary hover:underline">
+                <a href="tel:+12675889191" className="text-candy-pink hover:text-deep-berry font-medium transition-colors">
                   (267) 588-9191
                 </a>
               </p>

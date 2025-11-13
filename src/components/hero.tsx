@@ -1,54 +1,40 @@
-import { Button } from "@/components/ui/button"
-import { sections } from "@/content/sections"
 import Image from "next/image"
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-background">
-      <div className="container mx-auto px-4 py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-primary">
-                {sections.hero.headline}
-              </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                {sections.hero.subhead}
-              </p>
-            </div>
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://placehold.co/1920x1080/8B4513/FFFFFF?text=Chocolate+Charcuterie+Board"
+          alt="Beautiful artisanal chocolate charcuterie board"
+          fill
+          className="object-cover"
+          priority
+          unoptimized
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 gradient-overlay" />
+      </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="text-lg px-8">
-                {sections.hero.primaryCTA}
-              </Button>
-            </div>
+      {/* Hero Content */}
+      <div className="container mx-auto px-8 py-16 relative z-10">
+        <div className="max-w-[700px]">
+          <h1 className="hero-title text-white mb-6">
+            Handcrafted Confections That Wow
+          </h1>
+          <p className="text-white text-xl mb-8 leading-relaxed opacity-95">
+            From custom chocolate boards to rare candy flavors, we create Instagram-worthy treats that taste as amazing as they look.
+          </p>
 
-            {/* Trust Indicators */}
-            <div className="flex items-center space-x-6 text-sm text-muted-foreground">
-              <div className="flex items-center space-x-1">
-                <span className="text-primary font-semibold">★★★★★</span>
-                <span>5.0 Rating</span>
-              </div>
-              <div>Custom Orders Welcome</div>
-              <div>Local Delivery Available</div>
-            </div>
-          </div>
-
-          {/* Hero Image */}
-          <div className="relative">
-            <div className="aspect-square relative rounded-2xl overflow-hidden bg-muted/10">
-              <Image
-                src="https://placehold.co/600x600/8B4513/FFFFFF?text=Premium+Chocolate+Board"
-                alt="Beautiful artisanal chocolate charcuterie board with variety of premium chocolates, nuts, and treats"
-                width={600}
-                height={600}
-                className="object-cover w-full h-full"
-                priority
-                unoptimized
-              />
-            </div>
-
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4">
+            <a href="#contact" className="btn-primary">
+              Order Your Creation
+            </a>
+            <a href="#products" className="btn-secondary">
+              View Menu
+            </a>
           </div>
         </div>
       </div>

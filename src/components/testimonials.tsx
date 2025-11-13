@@ -37,13 +37,13 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section className="bg-warm-white" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <div className="container mx-auto px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="section-title text-deep-berry mb-4" style={{ fontSize: "var(--fs-h2)" }}>
             What Our Customers Say
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-soft-gray max-w-2xl mx-auto">
             Real stories from families, couples, and businesses who&apos;ve shared sweet moments with us.
           </p>
         </div>
@@ -51,15 +51,15 @@ export function Testimonials() {
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="w-full">
             {testimonials.map((testimonial) => (
-              <AccordionItem key={testimonial.id} value={testimonial.id}>
-                <AccordionTrigger className="text-left">
+              <AccordionItem key={testimonial.id} value={testimonial.id} className="border-b border-[rgba(255,107,157,0.1)]">
+                <AccordionTrigger className="text-left hover:text-candy-pink transition-colors">
                   <div className="flex flex-col items-start">
-                    <span className="font-semibold text-foreground">{testimonial.name}</span>
-                    <span className="text-sm text-muted-foreground">{testimonial.occasion}</span>
+                    <span className="font-semibold text-dark-chocolate">{testimonial.name}</span>
+                    <span className="text-sm text-soft-gray">{testimonial.occasion}</span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <blockquote className="text-muted-foreground italic border-l-4 border-primary pl-4">
+                  <blockquote className="testimonial-text text-dark-chocolate/80 border-l-4 border-candy-pink pl-6 py-2">
                     &ldquo;{testimonial.text}&rdquo;
                   </blockquote>
                 </AccordionContent>

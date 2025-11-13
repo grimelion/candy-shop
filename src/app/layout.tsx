@@ -1,31 +1,42 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display, Dancing_Script } from "next/font/google";
+import { Pacifico, Playfair_Display, Poppins, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import { AnalyticsProvider } from "@/lib/analytics";
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Script font for hero headlines - playful and premium
+const pacifico = Pacifico({
+  variable: "--font-script",
   subsets: ["latin"],
+  weight: ["400"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-// Bold serif for headings - conveys craftsmanship and indulgence
+// Display serif for section headers - elegant and sophisticated
 const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  weight: ["600", "700", "800"],
 });
 
-// Cursive/hand-lettered for accent text - nostalgic feel
-const dancingScript = Dancing_Script({
-  variable: "--font-dancing",
+// Sans-serif for subheadings - modern and clean
+const poppins = Poppins({
+  variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
+});
+
+// Sans-serif for body text - highly readable
+const dmSans = DM_Sans({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
+// Handwritten for special callouts - personal touch
+const caveat = Caveat({
+  variable: "--font-handwritten",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -81,7 +92,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${dancingScript.variable} antialiased`}
+        className={`${pacifico.variable} ${playfairDisplay.variable} ${poppins.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
+        style={{ fontFamily: 'var(--font-body)' }}
       >
         <AnalyticsProvider>
           {children}
