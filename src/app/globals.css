@@ -294,12 +294,11 @@
   }
 
   .btn-primary:hover {
-    transform: translateY(-3px);
     box-shadow: 0 6px 25px rgba(255, 107, 157, 0.45);
   }
 
   .btn-primary:active {
-    transform: translateY(-1px);
+    opacity: 0.9;
   }
 
   .btn-secondary {
@@ -321,12 +320,11 @@
   .btn-secondary:hover {
     background: var(--deep-berry);
     color: white;
-    transform: translateY(-3px);
     box-shadow: 0 4px 20px rgba(139, 35, 70, 0.3);
   }
 
   .btn-secondary:active {
-    transform: translateY(-1px);
+    opacity: 0.9;
   }
 
   /* Card System */
@@ -340,7 +338,6 @@
   }
 
   .card:hover {
-    transform: translateY(-8px) rotate(1deg);
     box-shadow: 0 15px 50px rgba(255, 107, 157, 0.2);
   }
 
@@ -362,7 +359,6 @@
   }
 
   .category-card:hover {
-    transform: translateY(-8px) rotate(1deg);
     box-shadow: 0 15px 50px rgba(255, 107, 157, 0.2);
   }
 
@@ -395,7 +391,6 @@
   }
 
   .pricing-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 12px 40px rgba(255, 107, 157, 0.2);
   }
 
@@ -406,7 +401,7 @@
   }
 
   .pricing-card.featured:hover {
-    transform: scale(1.08) translateY(-5px);
+    transform: scale(1.08);
     box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
   }
 
@@ -452,14 +447,7 @@
     }
   }
 
-  /* Hero CTA bounce animation */
-  .hero .btn-primary {
-    animation: gentleBounce 2s ease-in-out infinite;
-  }
-
-  .hero .btn-primary:hover {
-    animation: none;
-  }
+  /* Hero CTA bounce animation - disabled */
 
   /* General image styling */
   img {
