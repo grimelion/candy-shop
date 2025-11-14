@@ -67,7 +67,7 @@ export function Testimonials() {
                 className="absolute top-[-10px] left-[20px] text-[4rem] text-candy-pink opacity-30 leading-none select-none"
                 style={{ fontFamily: 'Georgia, serif' }}
               >
-                "
+                &ldquo;
               </div>
 
               {/* Star Rating */}
