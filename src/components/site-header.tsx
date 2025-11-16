@@ -26,10 +26,10 @@ export function SiteHeader() {
             : "bg-[rgba(255,255,255,0.95)] shadow-[0_2px_20px_rgba(0,0,0,0.05)]"
         } backdrop-blur-[10px]`}
       >
-        <div className="container mx-auto flex h-20 items-center justify-between px-8">
+        <div className="container mx-auto flex h-16 sm:h-20 items-center justify-between px-4 sm:px-8">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-[1.75rem] text-deep-berry" style={{ fontFamily: "var(--font-script)" }}>
+            <span className="text-[1.25rem] sm:text-[1.5rem] md:text-[1.75rem] text-deep-berry" style={{ fontFamily: "var(--font-script)" }}>
               {siteConfig.name}
             </span>
           </Link>

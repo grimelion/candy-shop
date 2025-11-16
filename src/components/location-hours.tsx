@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { WavyDivider } from "@/components/wavy-divider"
+import { StoreMap } from "@/components/google-map"
+import { Facebook, Instagram, Star, Music } from "lucide-react"
 
 const hours = [
   { day: "Sunday", time: "11:00 AM - 4:00 PM" },
@@ -94,23 +96,49 @@ export function LocationHours() {
               </div>
 
               <div>
-                <h4 className="font-semibold text-dark-chocolate mb-2">Follow Us</h4>
-                <a
-                  href="https://instagram.com/googahlinis_candy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-candy-pink hover:text-deep-berry transition-colors font-medium"
-                >
-                  @googahlinis_candy
-                </a>
+                <h4 className="font-semibold text-dark-chocolate mb-3">Follow Us</h4>
+                <div className="flex gap-3">
+                  <a
+                    href="https://www.facebook.com/share/1N4rW7vem6/?mibextid=wwXIfr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-candy-pink/10 hover:bg-deep-berry flex items-center justify-center text-candy-pink hover:text-cream transition-all"
+                    aria-label="Visit us on Facebook"
+                  >
+                    <Facebook className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/googahlinis_candy?igsh=MXRncXZ0MHQ3amM3dQ=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-candy-pink/10 hover:bg-deep-berry flex items-center justify-center text-candy-pink hover:text-cream transition-all"
+                    aria-label="Follow us on Instagram"
+                  >
+                    <Instagram className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://m.yelp.com/biz/googahlinis-candy-land-newtown-square"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-candy-pink/10 hover:bg-deep-berry flex items-center justify-center text-candy-pink hover:text-cream transition-all"
+                    aria-label="Review us on Yelp"
+                  >
+                    <Star className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@googahliniscandyland?_r=1&_t=ZM-91N25TETML5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-candy-pink/10 hover:bg-deep-berry flex items-center justify-center text-candy-pink hover:text-cream transition-all"
+                    aria-label="Follow us on TikTok"
+                  >
+                    <Music className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
 
               <div className="mt-6">
-                <div className="aspect-video bg-cream rounded-2xl flex items-center justify-center border border-[rgba(255,107,157,0.1)]">
-                  <p className="text-soft-gray text-sm">
-                    Map integration coming soon
-                  </p>
-                </div>
+                <StoreMap />
               </div>
             </div>
           </div>

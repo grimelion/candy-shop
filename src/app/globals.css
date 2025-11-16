@@ -160,7 +160,8 @@
     @apply border-border outline-ring/50;
   }
 
-  html, body {
+  html,
+  body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -256,25 +257,39 @@
   }
 
   .gradient-candy {
-    background: linear-gradient(135deg,
+    background: linear-gradient(
+      135deg,
       var(--candy-pink) 0%,
-      var(--deep-berry) 100%);
+      var(--deep-berry) 100%
+    );
   }
 
   .gradient-mint {
-    background: linear-gradient(135deg,
-      var(--mint-green) 0%,
-      #a0d9c4 100%);
+    background: linear-gradient(135deg, var(--mint-green) 0%, #a0d9c4 100%);
   }
 
   /* Utility classes for new color palette */
-  .text-candy-pink { color: var(--candy-pink); }
-  .text-deep-berry { color: var(--deep-berry); }
-  .text-gold-accent { color: var(--gold-accent); }
-  .bg-candy-pink { background-color: var(--candy-pink); }
-  .bg-deep-berry { background-color: var(--deep-berry); }
-  .bg-cream { background-color: var(--cream); }
-  .bg-mint-green { background-color: var(--mint-green); }
+  .text-candy-pink {
+    color: var(--candy-pink);
+  }
+  .text-deep-berry {
+    color: var(--deep-berry);
+  }
+  .text-gold-accent {
+    color: var(--gold-accent);
+  }
+  .bg-candy-pink {
+    background-color: var(--candy-pink);
+  }
+  .bg-deep-berry {
+    background-color: var(--deep-berry);
+  }
+  .bg-cream {
+    background-color: var(--cream);
+  }
+  .bg-mint-green {
+    background-color: var(--mint-green);
+  }
 
   /* Button System */
   .btn-primary {
@@ -409,11 +424,11 @@
   .pricing-card.featured::after {
     content: "Most Popular";
     position: absolute;
-    top: 20px;
-    right: -30px;
+    top: 28px;
+    right: -51px;
     background: var(--candy-pink);
     color: white;
-    padding: 5px 40px;
+    padding: 8px 50px;
     font-size: 0.875rem;
     font-weight: 600;
     transform: rotate(45deg);
@@ -440,7 +455,8 @@
   }
 
   @keyframes gentleBounce {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
@@ -499,4 +515,14 @@
 
 [aria-label="Notifications alt+T"] > * {
   pointer-events: auto;
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

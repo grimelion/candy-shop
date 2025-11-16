@@ -1,12 +1,12 @@
 import Link from "next/link"
-import { Phone, MapPin } from "lucide-react"
+import { Phone, MapPin, Facebook, Instagram, Star, Music } from "lucide-react"
 import { siteConfig } from "@/content/site"
 
 export function SiteFooter() {
   return (
     <footer className="bg-deep-berry" style={{ backgroundColor: 'var(--deep-berry)' }}>
       <div className="container mx-auto px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Business Info */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold" style={{ fontFamily: "var(--font-script)", color: 'var(--candy-pink)' }}>
@@ -42,6 +42,49 @@ export function SiteFooter() {
                   <span>{hours}</span>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Follow Us */}
+          <div className="space-y-4">
+            <h4 className="font-semibold" style={{ fontFamily: "var(--font-heading)", color: 'var(--cream)' }}>Follow Us</h4>
+            <div className="flex gap-3">
+              <a
+                href="https://www.facebook.com/share/1N4rW7vem6/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-cream hover:text-deep-berry flex items-center justify-center transition-all"
+                aria-label="Visit us on Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/googahlinis_candy?igsh=MXRncXZ0MHQ3amM3dQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-cream hover:text-deep-berry flex items-center justify-center transition-all"
+                aria-label="Follow us on Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://m.yelp.com/biz/googahlinis-candy-land-newtown-square"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-cream hover:text-deep-berry flex items-center justify-center transition-all"
+                aria-label="Review us on Yelp"
+              >
+                <Star className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@googahliniscandyland?_r=1&_t=ZM-91N25TETML5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-cream hover:text-deep-berry flex items-center justify-center transition-all"
+                aria-label="Follow us on TikTok"
+              >
+                <Music className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>

@@ -2,20 +2,70 @@ import { NextResponse } from "next/server";
 import { Dropbox } from "dropbox";
 import type { files } from "dropbox";
 
+// Cache for refreshed access token
+let cachedAccessToken: string | null = null;
+let tokenExpiry: number = 0;
+
+async function getAccessToken(): Promise<string> {
+  // If we have a cached token that's still valid, use it
+  if (cachedAccessToken && Date.now() < tokenExpiry) {
+    return cachedAccessToken;
+  }
+
+  const refreshToken = process.env.DROPBOX_REFRESH_TOKEN;
+  const appKey = process.env.DROPBOX_APP_KEY;
+  const appSecret = process.env.DROPBOX_APP_SECRET;
+
+  // If refresh token credentials are available, use them
+  if (refreshToken && appKey && appSecret) {
+    try {
+      const response = await fetch("https://api.dropbox.com/oauth2/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          grant_type: "refresh_token",
+          refresh_token: refreshToken,
+          client_id: appKey,
+          client_secret: appSecret,
+        }).toString(),
+      });
+
+      const responseText = await response.text();
+
+      if (!response.ok) {
+        console.error("Refresh token error response:", responseText);
+        throw new Error(`Failed to refresh token: ${response.status} - ${responseText}`);
+      }
+
+      const data = JSON.parse(responseText);
+      cachedAccessToken = data.access_token;
+      // Set expiry to 3.5 hours (tokens last 4 hours, refresh early)
+      tokenExpiry = Date.now() + 3.5 * 60 * 60 * 1000;
+
+      console.log("✅ Token refreshed successfully");
+      return cachedAccessToken as string;
+    } catch (error) {
+      console.error("Error refreshing token:", error);
+      console.log("Falling back to DROPBOX_ACCESS_TOKEN");
+      // Don't throw, fall through to use access token
+    }
+  }
+
+  // Fall back to direct access token
+  const accessToken = process.env.DROPBOX_ACCESS_TOKEN;
+  if (!accessToken || accessToken === "your_dropbox_access_token_here") {
+    throw new Error("No valid Dropbox credentials configured");
+  }
+
+  return accessToken;
+}
+
 export async function GET() {
   try {
-    const accessToken = process.env.DROPBOX_ACCESS_TOKEN;
     const folderPath = process.env.DROPBOX_FOLDER_PATH || "";
-
-    if (!accessToken || accessToken === "your_dropbox_access_token_here") {
-      return NextResponse.json(
-        {
-          error: "Dropbox access token not configured",
-          message: "Please set DROPBOX_ACCESS_TOKEN in your .env file",
-        },
-        { status: 500 }
-      );
-    }
+    const accessToken = await getAccessToken();
 
     const dbx = new Dropbox({
       accessToken,
@@ -73,8 +123,13 @@ export async function GET() {
     console.error("Dropbox API error:", error);
 
     let errorMessage = "Failed to fetch photos from Dropbox";
+    let statusCode = 500;
+
     if (error instanceof Error) {
       errorMessage = error.message;
+      if (errorMessage.includes("credentials")) {
+        statusCode = 401;
+      }
     }
 
     return NextResponse.json(
@@ -82,7 +137,7 @@ export async function GET() {
         error: "Failed to fetch photos",
         message: errorMessage,
       },
-      { status: 500 }
+      { status: statusCode }
     );
   }
 }
