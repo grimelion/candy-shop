@@ -1,7 +1,11 @@
+import { WavyDivider } from "@/components/wavy-divider"
+
 export function B2bStrip() {
   return (
-    <section className="bg-mint-green" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
-      <div className="container mx-auto px-8">
+    <section className="relative bg-mint-green" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <WavyDivider position="top" color="var(--mint-green)" />
+
+      <div className="container mx-auto px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -54,6 +58,8 @@ export function B2bStrip() {
           </div>
         </div>
       </div>
+
+      <WavyDivider position="bottom" color="var(--mint-green)" />
     </section>
   )
 }

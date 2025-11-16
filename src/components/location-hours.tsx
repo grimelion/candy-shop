@@ -1,13 +1,14 @@
 import { Badge } from "@/components/ui/badge"
+import { WavyDivider } from "@/components/wavy-divider"
 
 const hours = [
-  { day: "Monday", time: "10:00 AM - 7:00 PM" },
-  { day: "Tuesday", time: "10:00 AM - 7:00 PM" },
-  { day: "Wednesday", time: "10:00 AM - 7:00 PM" },
-  { day: "Thursday", time: "10:00 AM - 8:00 PM" },
-  { day: "Friday", time: "10:00 AM - 8:00 PM" },
-  { day: "Saturday", time: "9:00 AM - 8:00 PM" },
-  { day: "Sunday", time: "11:00 AM - 6:00 PM" }
+  { day: "Sunday", time: "11:00 AM - 4:00 PM" },
+  { day: "Monday", time: "10:00 AM - 7:30 PM" },
+  { day: "Tuesday", time: "10:00 AM - 7:30 PM" },
+  { day: "Wednesday", time: "10:00 AM - 7:30 PM" },
+  { day: "Thursday", time: "10:00 AM - 7:30 PM" },
+  { day: "Friday", time: "10:00 AM - 7:30 PM" },
+  { day: "Saturday", time: "10:00 AM - 5:00 PM" }
 ]
 
 function getCurrentDayStatus() {
@@ -15,16 +16,15 @@ function getCurrentDayStatus() {
   const currentDay = now.getDay() // 0 = Sunday, 1 = Monday, etc.
   const currentTime = now.getHours() * 100 + now.getMinutes()
 
-  const todaysHours = hours[currentDay === 0 ? 6 : currentDay - 1] // Adjust for Sunday being index 6 in our array
+  const todaysHours = hours[currentDay] // Sunday is now index 0
 
   if (todaysHours.day === "Sunday") {
-    return currentTime >= 1100 && currentTime < 1800 ? "open" : "closed"
+    return currentTime >= 1100 && currentTime < 1600 ? "open" : "closed"
   } else if (todaysHours.day === "Saturday") {
-    return currentTime >= 900 && currentTime < 2000 ? "open" : "closed"
-  } else if (todaysHours.day === "Thursday" || todaysHours.day === "Friday") {
-    return currentTime >= 1000 && currentTime < 2000 ? "open" : "closed"
+    return currentTime >= 1000 && currentTime < 1700 ? "open" : "closed"
   } else {
-    return currentTime >= 1000 && currentTime < 1900 ? "open" : "closed"
+    // Monday-Friday: 10:00 AM - 7:30 PM
+    return currentTime >= 1000 && currentTime < 1930 ? "open" : "closed"
   }
 }
 
@@ -32,8 +32,8 @@ export function LocationHours() {
   const status = getCurrentDayStatus()
 
   return (
-    <section className="bg-warm-white" id="location" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
-      <div className="container mx-auto px-8">
+    <section className="relative bg-warm-white" id="location" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <div className="container mx-auto px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="section-title text-candy-pink mb-4" style={{ fontSize: "var(--fs-h2)" }}>
             Visit Our Shop
@@ -116,6 +116,8 @@ export function LocationHours() {
           </div>
         </div>
       </div>
+
+      <WavyDivider position="bottom" color="var(--warm-white)" />
     </section>
   )
 }

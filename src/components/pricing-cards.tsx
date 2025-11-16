@@ -1,5 +1,7 @@
 "use client"
 
+import { WavyDivider } from "@/components/wavy-divider"
+
 interface PricingTier {
   name: string
   description: string
@@ -129,8 +131,10 @@ function PricingCard({ tier }: PricingCardProps) {
 
 export function PricingCards() {
   return (
-    <section className="bg-cream" id="pricing" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
-      <div className="container mx-auto px-8">
+    <section className="relative bg-cream" id="pricing" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <WavyDivider position="top" color="var(--cream)" />
+
+      <div className="container mx-auto px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="section-title text-deep-berry mb-4" style={{ fontSize: "var(--fs-h2)" }}>
             Simple, Transparent Pricing
@@ -193,6 +197,8 @@ export function PricingCards() {
           </p>
         </div>
       </div>
+
+      <WavyDivider position="bottom" color="var(--cream)" />
     </section>
   )
 }

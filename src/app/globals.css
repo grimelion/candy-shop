@@ -163,6 +163,7 @@
   html, body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
 
   body {
@@ -488,4 +489,14 @@
       font-size: 3rem;
     }
   }
+}
+
+/* Fix Toaster component creating blank space */
+[aria-label="Notifications alt+T"] {
+  position: fixed !important;
+  pointer-events: none;
+}
+
+[aria-label="Notifications alt+T"] > * {
+  pointer-events: auto;
 }

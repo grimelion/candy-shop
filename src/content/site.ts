@@ -4,13 +4,13 @@ export const siteConfig = {
   phone: "+1-267-588-9191",
   address: "3605 Chapel Rd, Newtown Square, PA 19073",
   hours: {
+    sunday: "11:00 AM - 4:00 PM",
     monday: "10:00 AM - 7:30 PM",
     tuesday: "10:00 AM - 7:30 PM",
     wednesday: "10:00 AM - 7:30 PM",
     thursday: "10:00 AM - 7:30 PM",
     friday: "10:00 AM - 7:30 PM",
-    saturday: "10:00 AM - 7:30 PM",
-    sunday: "11:00 AM - 4:00 PM"
+    saturday: "10:00 AM - 5:00 PM"
   },
   offerings: [
     "Penny candy selection with classic favorites like Pop Rocks and Sour Patch Kids",

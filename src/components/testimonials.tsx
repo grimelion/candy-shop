@@ -1,5 +1,7 @@
 "use client"
 
+import { WavyDivider } from "@/components/wavy-divider"
+
 const testimonials = [
   {
     id: "testimonial-1",
@@ -45,8 +47,10 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="bg-warm-white" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
-      <div className="container mx-auto px-8">
+    <section className="relative bg-warm-white" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <WavyDivider position="top" color="var(--warm-white)" />
+
+      <div className="container mx-auto px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="section-title text-deep-berry mb-4" style={{ fontSize: "var(--fs-h2)" }}>
             What Our Customers Say
@@ -100,6 +104,8 @@ export function Testimonials() {
           ))}
         </div>
       </div>
+
+      <WavyDivider position="bottom" color="var(--warm-white)" />
     </section>
   )
 }

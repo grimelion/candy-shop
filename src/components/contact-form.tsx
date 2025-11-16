@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect } from "react"
 import { toast } from "sonner"
+import { WavyDivider } from "@/components/wavy-divider"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -32,8 +33,10 @@ export function ContactForm({ defaultService, showTitle = true }: ContactFormPro
   }, [state])
 
   return (
-    <section className={showTitle ? "bg-cream" : ""} id="contact" style={showTitle ? { paddingTop: '6rem', paddingBottom: '6rem' } : {}}>
-      <div className={showTitle ? "container mx-auto px-8" : ""}>
+    <section className={showTitle ? "relative bg-cream" : ""} id="contact" style={showTitle ? { paddingTop: '6rem', paddingBottom: '6rem' } : {}}>
+      {showTitle && <WavyDivider position="top" color="var(--cream)" />}
+
+      <div className={showTitle ? "container mx-auto px-8 relative z-10" : ""}>
         {showTitle && (
           <div className="text-center mb-16">
             <h2 className="section-title text-deep-berry mb-4" style={{ fontSize: "var(--fs-h2)" }}>
@@ -174,6 +177,8 @@ export function ContactForm({ defaultService, showTitle = true }: ContactFormPro
           </CardContent>
         </Card>
       </div>
+
+      {showTitle && <WavyDivider position="bottom" color="var(--cream)" />}
     </section>
   )
 }
