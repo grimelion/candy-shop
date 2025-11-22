@@ -97,7 +97,7 @@ export default function Home() {
         <B2bStrip />
         <Testimonials />
         <LocationHours />
-        {/* <ContactForm /> */}
+        <ContactForm />
       </main>
       <SiteFooter />
     </>

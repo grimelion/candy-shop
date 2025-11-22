@@ -64,14 +64,14 @@ export function AnnouncementBar({
 export const seasonalAnnouncements = {
   halloween: {
     message: "👻 Halloween Treats Available! Custom spooky candy boards and themed gift baskets.",
-    ctaText: "Order Now",
-    ctaHref: "#contact",
+    ctaText: "Call Us",
+    ctaHref: "tel:+12675889191",
     variant: "seasonal" as const
   },
   christmas: {
-    message: "🎄 Holiday Orders Now Open! Book your Christmas candy displays early.",
-    ctaText: "Book Now",
-    ctaHref: "#contact",
+    message: "🎄 Holiday Season! Book your Christmas candy displays early.",
+    ctaText: "Call Now",
+    ctaHref: "tel:+12675889191",
     variant: "seasonal" as const
   },
   easter: {
@@ -82,12 +82,12 @@ export const seasonalAnnouncements = {
   },
   valentines: {
     message: "💝 Valentine's Day Chocolate Boards - Show your love with artisanal sweets.",
-    ctaText: "Order Now",
-    ctaHref: "#contact",
+    ctaText: "Call Us",
+    ctaHref: "tel:+12675889191",
     variant: "seasonal" as const
   },
   shipping: {
-    message: "📦 Free local delivery on orders over $75 in the Philadelphia area!",
+    message: "📦 Free local delivery in the Philadelphia area!",
     ctaText: "Learn More",
     ctaHref: "#contact",
     variant: "default" as const

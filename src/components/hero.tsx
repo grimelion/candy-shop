@@ -30,7 +30,7 @@ export function Hero() {
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4">
             <a href="#contact" className="btn-primary">
-              Order Your Creation
+              Call Us
             </a>
             <a href="#products" className="btn-secondary">
               View Menu

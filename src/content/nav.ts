@@ -7,7 +7,7 @@ export const navigation = {
     { name: "Contact", href: "#contact", description: "Get in touch with us" }
   ],
   cta: [
-    { name: "Order Gifts", href: "#contact", variant: "outline" as const, description: "Place an order for custom gifts" },
-    { name: "Book Candy Bar", href: "#contact", variant: "default" as const, description: "Book an event candy bar setup" }
+    { name: "Contact Us", href: "#contact", variant: "outline" as const, description: "Get in touch with us" },
+    { name: "Call Now", href: "tel:+12675889191", variant: "default" as const, description: "Call us directly" }
   ]
 } as const;
