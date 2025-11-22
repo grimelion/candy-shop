@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { WavyDivider } from "@/components/wavy-divider"
+import { WavyDivider } from "@/components/wavy-divider";
 
 interface PricingTier {
-  name: string
-  description: string
-  price: string
-  priceDescription: string
-  features: string[]
-  popular?: boolean
-  ctaText: string
+  name: string;
+  description: string;
+  price: string;
+  priceDescription: string;
+  features: string[];
+  popular?: boolean;
+  ctaText: string;
 }
 
 const pricingTiers: PricingTier[] = [
@@ -23,9 +23,9 @@ const pricingTiers: PricingTier[] = [
       "Serves 2-4 people",
       "Premium chocolate selection",
       "Beautiful presentation",
-      "Same-day pickup available"
+      "Same-day pickup available",
     ],
-    ctaText: "Order Small Board"
+    ctaText: "Order Small Board",
   },
   {
     name: "Celebration Board",
@@ -38,10 +38,10 @@ const pricingTiers: PricingTier[] = [
       "Gourmet chocolate & candy mix",
       "Custom arrangement",
       "Free local delivery",
-      "Gift wrapping included"
+      "Gift wrapping included",
     ],
     popular: true,
-    ctaText: "Order Medium Board"
+    ctaText: "Order Medium Board",
   },
   {
     name: "Grand Feast",
@@ -55,11 +55,11 @@ const pricingTiers: PricingTier[] = [
       "Custom design consultation",
       "White-glove delivery",
       "Setup service available",
-      "Perfect for corporate events"
+      "Perfect for corporate events",
     ],
-    ctaText: "Order Large Board"
-  }
-]
+    ctaText: "Order Large Board",
+  },
+];
 
 const giftBasketTiers: PricingTier[] = [
   {
@@ -72,9 +72,9 @@ const giftBasketTiers: PricingTier[] = [
       "Beautiful gift packaging",
       "Personal note included",
       "Perfect for birthdays",
-      "Ships nationwide"
+      "Ships nationwide",
     ],
-    ctaText: "Order Gift Basket"
+    ctaText: "Order Gift Basket",
   },
   {
     name: "Ultimate Indulgence",
@@ -87,22 +87,25 @@ const giftBasketTiers: PricingTier[] = [
       "Customizable contents",
       "Corporate branding available",
       "Express shipping options",
-      "Perfect for client gifts"
+      "Perfect for client gifts",
     ],
     popular: true,
-    ctaText: "Order Premium Basket"
-  }
-]
+    ctaText: "Order Premium Basket",
+  },
+];
 
 interface PricingCardProps {
-  tier: PricingTier
+  tier: PricingTier;
 }
 
 function PricingCard({ tier }: PricingCardProps) {
   return (
-    <div className={`pricing-card ${tier.popular ? 'featured' : ''}`}>
+    <div className={`pricing-card ${tier.popular ? "featured" : ""}`}>
       <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold mb-2 text-deep-berry" style={{ fontFamily: "var(--font-heading)" }}>
+        <h3
+          className="text-2xl font-bold mb-2 text-deep-berry"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
           {tier.name}
         </h3>
         <p className="text-sm text-soft-gray mb-4">{tier.description}</p>
@@ -119,34 +122,46 @@ function PricingCard({ tier }: PricingCardProps) {
           </li>
         ))}
       </ul>
-      <a
+      {/* <a
         href="#contact"
-        className={`btn-${tier.popular ? 'primary' : 'secondary'} w-full block text-center`}
+        className={`btn-${
+          tier.popular ? "primary" : "secondary"
+        } w-full block text-center`}
       >
         {tier.ctaText}
-      </a>
+      </a> */}
     </div>
-  )
+  );
 }
 
 export function PricingCards() {
   return (
-    <section className="relative bg-cream" id="pricing" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+    <section
+      className="relative bg-cream"
+      id="pricing"
+      style={{ paddingTop: "6rem", paddingBottom: "6rem" }}
+    >
       <WavyDivider position="top" color="var(--cream)" />
 
       <div className="container mx-auto px-8 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="section-title text-deep-berry mb-4" style={{ fontSize: "var(--fs-h2)" }}>
+          <h2
+            className="section-title text-deep-berry mb-4"
+            style={{ fontSize: "var(--fs-h2)" }}
+          >
             Simple, Transparent Pricing
           </h2>
           <p className="text-soft-gray text-lg max-w-2xl mx-auto">
-            Starting prices for our most popular offerings. All orders are custom-made, so final pricing depends on your specific requirements.
+            Starting prices for our most popular offerings. All orders are
+            custom-made, so final pricing depends on your specific requirements.
           </p>
         </div>
-
         {/* Chocolate Boards */}
         <div className="mb-16">
-          <h3 className="text-3xl font-semibold text-center mb-8 text-deep-berry" style={{ fontFamily: "var(--font-heading)" }}>
+          <h3
+            className="text-3xl font-semibold text-center mb-8 text-deep-berry"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
             Chocolate Charcuterie Boards
           </h3>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -155,10 +170,12 @@ export function PricingCards() {
             ))}
           </div>
         </div>
-
         {/* Gift Baskets */}
         <div className="mb-12">
-          <h3 className="text-3xl font-semibold text-center mb-8 text-deep-berry" style={{ fontFamily: "var(--font-heading)" }}>
+          <h3
+            className="text-3xl font-semibold text-center mb-8 text-deep-berry"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
             Gift Baskets
           </h3>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -167,12 +184,15 @@ export function PricingCards() {
             ))}
           </div>
         </div>
-
         {/* Custom Events */}
+        {/* 
         <div className="text-center">
           <div className="pricing-card max-w-md mx-auto">
             <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold mb-2 text-deep-berry" style={{ fontFamily: "var(--font-heading)" }}>
+              <h3
+                className="text-2xl font-bold mb-2 text-deep-berry"
+                style={{ fontFamily: "var(--font-heading)" }}
+              >
                 Custom Events & Corporate Orders
               </h3>
               <p className="text-sm text-soft-gray mb-4">
@@ -183,22 +203,25 @@ export function PricingCards() {
               </div>
             </div>
             <p className="text-sm text-dark-chocolate/80 mb-6">
-              Every event is unique. Let&apos;s create something perfect for your occasion.
+              Every event is unique. Let&apos;s create something perfect for
+              your occasion.
             </p>
             <a href="#contact" className="btn-primary w-full block text-center">
               Get Custom Quote
             </a>
           </div>
         </div>
-
+*/}
         <div className="text-center mt-8">
           <p className="text-sm text-soft-gray">
-            All prices include consultation and custom design. Additional charges may apply for rush orders, special dietary requirements, or premium packaging options.
+            All prices include consultation and custom design. Additional
+            charges may apply for rush orders, special dietary requirements, or
+            premium packaging options.
           </p>
         </div>
       </div>
 
       <WavyDivider position="bottom" color="var(--cream)" />
     </section>
-  )
+  );
 }

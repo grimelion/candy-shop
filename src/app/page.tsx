@@ -56,7 +56,7 @@ export default function Home() {
     image: "https://googahlinis.com/og-image.jpg",
     sameAs: [
       "https://www.instagram.com/googahlinis_candy/",
-      "https://www.yelp.com/biz/googahlinis-candy-land-newtown-square"
+      "https://www.yelp.com/biz/googahlinis-candy-land-newtown-square",
     ],
     potentialAction: {
       "@type": "SearchAction",
@@ -80,9 +80,12 @@ export default function Home() {
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Sweet Gallery</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Our Sweet Gallery
+              </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Explore our collection of handcrafted candy boards, custom gift arrangements, and special event treats
+                Explore our collection of handcrafted candy boards, custom gift
+                arrangements, and special event treats
               </p>
             </div>
             <PhotoGallery />
@@ -94,7 +97,7 @@ export default function Home() {
         <B2bStrip />
         <Testimonials />
         <LocationHours />
-        <ContactForm />
+        {/* <ContactForm /> */}
       </main>
       <SiteFooter />
     </>
