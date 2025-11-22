@@ -220,7 +220,7 @@ export default function B2BPage() {
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
                 <h3 className="text-xl font-semibold mb-6">Get Your Custom Quote</h3>
-                <ContactForm defaultService="b2b" />
+                <ContactForm />
               </div>
               <div className="space-y-6">
                 <div>
