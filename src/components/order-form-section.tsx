@@ -105,6 +105,39 @@ export function OrderFormSection() {
           />
         )}
       </div>
+
+      {/* What's Included Section */}
+      <div className="bg-muted/30 rounded-lg p-6 border border-muted-foreground/10">
+        <h2
+          className="text-xl font-bold text-deep-berry mb-2"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          What&apos;s Included
+        </h2>
+        <p className="text-muted-foreground mb-4 text-sm">
+          All boards feature our signature selection
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {ingredients.map((item) => (
+            <div
+              key={item.name}
+              className="flex items-center gap-2 text-sm text-deep-berry/80"
+            >
+              <span>{item.icon}</span>
+              <span>{item.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
+
+const ingredients = [
+  { name: "Assorted premium chocolates", icon: "🍫" },
+  { name: "Artisan truffles", icon: "🟤" },
+  { name: "Chocolate-covered strawberries", icon: "🍓" },
+  { name: "Caramel clusters", icon: "🍬" },
+  { name: "Chocolate-dipped pretzels", icon: "🥨" },
+  { name: "Roasted nuts", icon: "🥜" },
+];
