@@ -25,7 +25,10 @@ None
 **Goal**: Create the `/order` route with page layout, hero section, and navigation integration
 **Depends on**: Nothing (first phase)
 **Research**: Unlikely (existing Next.js App Router patterns)
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 01-01: Create order page with hero section and add navigation link
 
 ### Phase 2: Board Size Selection
 **Goal**: Build visual board size selector with small/medium/large options and placeholder images
@@ -53,7 +56,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Order Page Structure | 0/TBD | Not started | - |
+| 1. Order Page Structure | 0/1 | Not started | - |
 | 2. Board Size Selection | 0/TBD | Not started | - |
 | 3. Order Form & Validation | 0/TBD | Not started | - |
 | 4. WhatsApp Integration | 0/TBD | Not started | - |
