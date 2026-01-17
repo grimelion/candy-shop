@@ -17,6 +17,7 @@ None
 - [x] **Phase 1: Order Page Structure** - Create `/order` route with page layout
 - [x] **Phase 2: Board Size Selection** - Visual size picker with placeholder images
 - [x] **Phase 3: Order Form & Validation** - Form fields using existing patterns
+- [ ] **Phase 3.1: Board Images & Ingredients** - INSERTED: Add photos and ingredients to order page
 - [ ] **Phase 4: WhatsApp Integration** - Connect to WhatsApp Cloud API for notifications
 
 ## Phase Details
@@ -48,21 +49,34 @@ Plans:
 Plans:
 - [x] 03-01: Create OrderForm component and integrate into order page
 
+### Phase 3.1: Board Images & Ingredients (INSERTED)
+**Goal**: Add board photos from gallery and ingredients section to order page
+**Depends on**: Phase 3
+**Research**: Unlikely (existing patterns)
+**Plans**: 1 plan
+
+Plans:
+- [ ] 03.1-01: Add images to BoardSizeSelector and ingredients section
+
 ### Phase 4: WhatsApp Integration
 **Goal**: Set up WhatsApp Cloud API to notify shop owner on form submission
-**Depends on**: Phase 3
+**Depends on**: Phase 3.1
 **Research**: Likely (external API integration)
 **Research topics**: WhatsApp Cloud API setup, message templates, Meta Business account, webhook configuration
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 04-01: Create WhatsApp server action and integrate into order form
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 → 2 → 3 → 3.1 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Order Page Structure | 1/1 | Complete | 2026-01-17 |
 | 2. Board Size Selection | 1/1 | Complete | 2026-01-17 |
 | 3. Order Form & Validation | 1/1 | Complete | 2026-01-17 |
-| 4. WhatsApp Integration | 0/TBD | Not started | - |
+| 3.1. Board Images & Ingredients | 0/1 | Not started | - |
+| 4. WhatsApp Integration | 0/1 | Not started | - |
