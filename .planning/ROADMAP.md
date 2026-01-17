@@ -43,7 +43,10 @@ Plans:
 **Goal**: Complete order form with name, phone, email fields using react-hook-form + zod
 **Depends on**: Phase 2
 **Research**: Unlikely (existing contact form as template)
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 03-01: Create OrderForm component and integrate into order page
 
 ### Phase 4: WhatsApp Integration
 **Goal**: Set up WhatsApp Cloud API to notify shop owner on form submission
@@ -61,5 +64,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Order Page Structure | 1/1 | Complete | 2026-01-17 |
 | 2. Board Size Selection | 1/1 | Complete | 2026-01-17 |
-| 3. Order Form & Validation | 0/TBD | Not started | - |
+| 3. Order Form & Validation | 0/1 | Not started | - |
 | 4. WhatsApp Integration | 0/TBD | Not started | - |
