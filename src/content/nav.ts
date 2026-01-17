@@ -4,6 +4,7 @@ export const navigation = {
     { name: "Gifts", href: "#gifts", description: "Custom candy gifts and baskets" },
     { name: "Candy Boards", href: "#boards", description: "Chocolate charcuterie boards" },
     { name: "Events", href: "#events", description: "Event candy bars and setups" },
+    { name: "Order", href: "/order", description: "Order chocolate charcuterie boards" },
     { name: "Contact", href: "#contact", description: "Get in touch with us" }
   ],
   cta: [
