@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Badge } from "@/components/ui/badge";
+import { OrderFormSection } from "@/components/order-form-section";
 
 export const metadata: Metadata = {
   title: "Order Chocolate Boards",
@@ -38,15 +39,11 @@ export default function OrderPage() {
           </div>
         </section>
 
-        {/* Order Form Section - Placeholder for Phase 2 and 3 */}
+        {/* Order Form Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center p-12 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20">
-                <p className="text-muted-foreground text-lg">
-                  Order form coming soon
-                </p>
-              </div>
+              <OrderFormSection />
             </div>
           </div>
         </section>
