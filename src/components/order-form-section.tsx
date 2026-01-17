@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { BoardSizeSelector } from "@/components/board-size-selector";
+import { OrderForm } from "@/components/order-form";
 
 export function OrderFormSection() {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
     <div className="space-y-8">
@@ -42,11 +44,21 @@ export function OrderFormSection() {
             ? "Fill in your contact information to complete your order"
             : "Select a board size above to continue"}
         </p>
-        <div className="p-8 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-          <p className="text-muted-foreground">
-            Order form coming in Phase 3
-          </p>
-        </div>
+        {isSubmitted ? (
+          <div className="p-8 bg-green-50 rounded-lg border-2 border-green-200 text-center">
+            <p className="text-green-800 font-medium text-lg mb-2">
+              Thank you for your order request!
+            </p>
+            <p className="text-green-700">
+              We&apos;ll contact you soon to confirm the details.
+            </p>
+          </div>
+        ) : (
+          <OrderForm
+            selectedSize={selectedSize}
+            onSubmitSuccess={() => setIsSubmitted(true)}
+          />
+        )}
       </div>
     </div>
   );
