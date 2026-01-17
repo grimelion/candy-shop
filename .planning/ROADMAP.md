@@ -34,7 +34,10 @@ Plans:
 **Goal**: Build visual board size selector with small/medium/large options and placeholder images
 **Depends on**: Phase 1
 **Research**: Unlikely (existing shadcn/ui component patterns)
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 02-01: Create BoardSizeSelector component and integrate into order page
 
 ### Phase 3: Order Form & Validation
 **Goal**: Complete order form with name, phone, email fields using react-hook-form + zod
@@ -57,6 +60,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Order Page Structure | 1/1 | Complete | 2026-01-17 |
-| 2. Board Size Selection | 0/TBD | Not started | - |
+| 2. Board Size Selection | 0/1 | Not started | - |
 | 3. Order Form & Validation | 0/TBD | Not started | - |
 | 4. WhatsApp Integration | 0/TBD | Not started | - |
