@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Check } from "lucide-react";
 
 interface BoardSize {
@@ -36,19 +37,30 @@ const boardSizes: BoardSize[] = [
   },
 ];
 
+export interface BoardImages {
+  small?: string;
+  medium?: string;
+  large?: string;
+}
+
 interface BoardSizeSelectorProps {
   selectedSize: string | null;
   onSizeSelect: (size: string) => void;
+  images?: BoardImages;
+  imagesLoading?: boolean;
 }
 
 export function BoardSizeSelector({
   selectedSize,
   onSizeSelect,
+  images,
+  imagesLoading,
 }: BoardSizeSelectorProps) {
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {boardSizes.map((size) => {
         const isSelected = selectedSize === size.id;
+        const imageUrl = images?.[size.id];
 
         return (
           <button
@@ -56,7 +68,7 @@ export function BoardSizeSelector({
             type="button"
             onClick={() => onSizeSelect(size.id)}
             className={`
-              relative p-6 rounded-lg border-2 text-left transition-all
+              relative rounded-lg border-2 text-left transition-all overflow-hidden
               cursor-pointer hover:border-candy-pink/50 hover:shadow-md
               ${
                 isSelected
@@ -65,9 +77,28 @@ export function BoardSizeSelector({
               }
             `}
           >
+            {/* Image section */}
+            <div className="relative w-full aspect-[4/3] bg-muted/30">
+              {imagesLoading ? (
+                <div className="absolute inset-0 animate-pulse bg-muted/50" />
+              ) : imageUrl ? (
+                <Image
+                  src={imageUrl}
+                  alt={`${size.name} chocolate board`}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-muted/30">
+                  <span className="text-4xl">🍫</span>
+                </div>
+              )}
+            </div>
+
             {/* Popular badge */}
             {size.popular && (
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-candy-pink text-white text-xs font-semibold px-3 py-1 rounded-full">
+              <span className="absolute top-2 left-1/2 -translate-x-1/2 bg-candy-pink text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
                 Most Popular
               </span>
             )}
@@ -75,7 +106,7 @@ export function BoardSizeSelector({
             {/* Selection indicator */}
             <div
               className={`
-                absolute top-4 right-4 w-6 h-6 rounded-full border-2 flex items-center justify-center
+                absolute top-2 right-2 w-6 h-6 rounded-full border-2 flex items-center justify-center bg-white/80
                 ${
                   isSelected
                     ? "bg-candy-pink border-candy-pink"
@@ -87,7 +118,7 @@ export function BoardSizeSelector({
             </div>
 
             {/* Content */}
-            <div className="pr-8">
+            <div className="p-4">
               <h3
                 className="text-xl font-bold text-deep-berry mb-1"
                 style={{ fontFamily: "var(--font-heading)" }}
