@@ -15,7 +15,7 @@ None
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Order Page Structure** - Create `/order` route with page layout
-- [ ] **Phase 2: Board Size Selection** - Visual size picker with placeholder images
+- [x] **Phase 2: Board Size Selection** - Visual size picker with placeholder images
 - [ ] **Phase 3: Order Form & Validation** - Form fields using existing patterns
 - [ ] **Phase 4: WhatsApp Integration** - Connect to WhatsApp Cloud API for notifications
 
@@ -37,7 +37,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 02-01: Create BoardSizeSelector component and integrate into order page
+- [x] 02-01: Create BoardSizeSelector component and integrate into order page
 
 ### Phase 3: Order Form & Validation
 **Goal**: Complete order form with name, phone, email fields using react-hook-form + zod
@@ -60,6 +60,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Order Page Structure | 1/1 | Complete | 2026-01-17 |
-| 2. Board Size Selection | 0/1 | Not started | - |
+| 2. Board Size Selection | 1/1 | Complete | 2026-01-17 |
 | 3. Order Form & Validation | 0/TBD | Not started | - |
 | 4. WhatsApp Integration | 0/TBD | Not started | - |
