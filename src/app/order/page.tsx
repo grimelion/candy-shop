@@ -6,11 +6,11 @@ import { OrderFormSection } from "@/components/order-form-section";
 
 export const metadata: Metadata = {
   title: "Order Chocolate Boards",
-  description: "Order custom chocolate charcuterie boards for any occasion. Choose your size and we'll create a beautiful, delicious board just for you.",
-  keywords: ["order", "chocolate boards", "custom candy", "charcuterie", "candy boards", "Philadelphia"],
+  description: "Order our handcrafted chocolate charcuterie boards. Pick your size and we'll have it ready for pickup or delivery.",
+  keywords: ["order", "chocolate boards", "candy", "charcuterie", "candy boards", "Philadelphia"],
   openGraph: {
     title: "Order Chocolate Boards | Googahlini's Candy Land",
-    description: "Order custom chocolate charcuterie boards for any occasion. Choose your size and we'll create a beautiful, delicious board just for you.",
+    description: "Order our handcrafted chocolate charcuterie boards. Pick your size and we'll have it ready for pickup or delivery.",
   }
 };
 
@@ -28,11 +28,11 @@ export default function OrderPage() {
                 className="text-4xl md:text-5xl font-bold mb-6"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Create Your Perfect Chocolate Board
+                Order a Chocolate Board
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Choose your board size, fill in your details, and we&apos;ll craft a
-                stunning chocolate charcuterie board just for you. Perfect for
+                Pick your board size and leave your details. We&apos;ll reach out
+                to confirm your order and arrange pickup or delivery. Perfect for
                 parties, gifts, or treating yourself!
               </p>
             </div>

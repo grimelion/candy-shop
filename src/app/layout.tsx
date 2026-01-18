@@ -39,8 +39,18 @@ const caveat = Caveat({
   weight: ["500", "600", "700"],
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FFF8F0' },
+    { media: '(prefers-color-scheme: dark)', color: '#2D1B2E' }
+  ],
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://googahlinis.com'),
+  metadataBase: new URL('https://www.googahliniscandy.com'),
   title: {
     default: "Googahlini's Candy Land | Classic & Artisanal Candies",
     template: "%s | Googahlini's Candy Land"
@@ -49,10 +59,19 @@ export const metadata: Metadata = {
   keywords: ["Googahlini's Candy Land", "candy shop", "Newtown Square PA", "artisanal candy", "rare candy flavors", "Sour Patch Kids", "custom candy boards", "Philadelphia candy", "local candy store"],
   authors: [{ name: "Googahlini's Candy Land" }],
   creator: "Googahlini's Candy Land",
+  publisher: "Googahlini's Candy Land",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: 'https://www.googahliniscandy.com',
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://googahlinis.com",
+    url: "https://www.googahliniscandy.com",
     title: "Googahlini's Candy Land | Classic & Artisanal Candies",
     description: "Locally owned candy shop in Newtown Square, PA featuring classic favorites, rare candy flavors, and custom candy creations",
     siteName: "Googahlini's Candy Land",
@@ -81,7 +100,8 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1
     }
-  }
+  },
+  category: 'food & beverage',
 };
 
 export default function RootLayout({

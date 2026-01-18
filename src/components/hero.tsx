@@ -1,4 +1,6 @@
 import Image from "next/image"
+import Link from "next/link"
+import { siteConfig } from "@/content/site"
 
 export function Hero() {
   return (
@@ -29,12 +31,12 @@ export function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4">
-            <a href="#contact" className="btn-primary">
+            <a href={`tel:${siteConfig.phone}`} className="btn-secondary">
               Call Us
             </a>
-            <a href="#products" className="btn-secondary">
-              View Menu
-            </a>
+            <Link href="/order" className="btn-primary">
+              Order Now
+            </Link>
           </div>
         </div>
       </div>

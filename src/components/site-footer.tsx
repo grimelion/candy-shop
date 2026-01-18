@@ -20,13 +20,13 @@ export function SiteFooter() {
             <h4 className="font-semibold" style={{ fontFamily: "var(--font-heading)", color: 'var(--cream)' }}>Contact</h4>
             <div className="space-y-2 text-sm" style={{ color: 'rgba(255, 248, 240, 0.85)' }}>
               <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" style={{ color: 'var(--candy-pink)' }} />
+                <Phone className="h-4 w-4" style={{ color: 'white' }} />
                 <Link href={`tel:${siteConfig.phone}`} className="hover:text-candy-pink transition-colors" style={{ color: 'inherit' }}>
                   {siteConfig.phone}
                 </Link>
               </div>
               <div className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 mt-0.5" style={{ color: 'var(--candy-pink)' }} />
+                <MapPin className="h-4 w-4 mt-0.5" style={{ color: 'white' }} />
                 <span>{siteConfig.address}</span>
               </div>
             </div>
@@ -53,7 +53,7 @@ export function SiteFooter() {
                 href="https://www.facebook.com/share/1N4rW7vem6/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-cream hover:text-deep-berry flex items-center justify-center transition-all"
+                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-white hover:text-deep-berry flex items-center justify-center transition-all"
                 aria-label="Visit us on Facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -62,7 +62,7 @@ export function SiteFooter() {
                 href="https://www.instagram.com/googahlinis_candy?igsh=MXRncXZ0MHQ3amM3dQ=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-cream hover:text-deep-berry flex items-center justify-center transition-all"
+                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-white hover:text-deep-berry flex items-center justify-center transition-all"
                 aria-label="Follow us on Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -71,7 +71,7 @@ export function SiteFooter() {
                 href="https://m.yelp.com/biz/googahlinis-candy-land-newtown-square"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-cream hover:text-deep-berry flex items-center justify-center transition-all"
+                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-white hover:text-deep-berry flex items-center justify-center transition-all"
                 aria-label="Review us on Yelp"
               >
                 <Star className="w-5 h-5" />
@@ -80,7 +80,7 @@ export function SiteFooter() {
                 href="https://www.tiktok.com/@googahliniscandyland?_r=1&_t=ZM-91N25TETML5"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-cream hover:text-deep-berry flex items-center justify-center transition-all"
+                className="w-10 h-10 rounded-full bg-candy-pink/20 hover:bg-cream text-white hover:text-deep-berry flex items-center justify-center transition-all"
                 aria-label="Follow us on TikTok"
               >
                 <Music className="w-5 h-5" />
