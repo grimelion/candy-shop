@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Check } from "lucide-react";
 
 interface BoardSize {
@@ -78,19 +77,18 @@ export function BoardSizeSelector({
             `}
           >
             {/* Image section */}
-            <div className="relative w-full aspect-[4/3] bg-muted/30">
+            <div className="w-full aspect-[4/3] bg-muted/30 overflow-hidden">
               {imagesLoading ? (
-                <div className="absolute inset-0 animate-pulse bg-muted/50" />
+                <div className="w-full h-full animate-pulse bg-muted/50" />
               ) : imageUrl ? (
-                <Image
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
                   src={imageUrl}
                   alt={`${size.name} chocolate board`}
-                  fill
-                  className="object-cover"
-                  unoptimized
+                  className="w-full h-full object-cover object-center"
                 />
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-muted/30">
+                <div className="w-full h-full flex items-center justify-center bg-muted/30">
                   <span className="text-4xl">🍫</span>
                 </div>
               )}

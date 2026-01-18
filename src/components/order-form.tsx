@@ -15,9 +15,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+const phoneRegex = /^[\d\s\-\(\)\+]{10,}$/;
+
 const orderFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  phone: z.string().min(10, "Phone must be at least 10 characters"),
+  phone: z
+    .string()
+    .min(10, "Phone must be at least 10 digits")
+    .regex(phoneRegex, "Please enter a valid phone number"),
   email: z.string().email("Please enter a valid email address"),
 });
 
