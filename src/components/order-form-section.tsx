@@ -1,55 +1,55 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState } from "react";
+// import { useEffect } from "react";
+// import Image from "next/image";
 import { BoardSizeSelector } from "@/components/board-size-selector";
 import { OrderForm } from "@/components/order-form";
 
-interface GalleryPhoto {
-  id: string;
-  name: string;
-  link: string;
-}
+// interface GalleryPhoto {
+//   id: string;
+//   name: string;
+//   link: string;
+// }
 
 export function OrderFormSection() {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [boardImages, setBoardImages] = useState<Record<string, string>>({
-    small: "/images/artisanal-sweets.jpg",
-    medium: "/images/chocolate-board-1.jpg",
-    large: "/images/hero-chocolate-board.jpg",
-  });
 
-  useEffect(() => {
-    async function fetchImages() {
-      try {
-        const response = await fetch("/api/gallery");
-        if (!response.ok) return;
+  // const [boardImages, setBoardImages] = useState<Record<string, string>>({
+  //   small: "/images/artisanal-sweets.jpg",
+  //   medium: "/images/chocolate-board-1.jpg",
+  //   large: "/images/hero-chocolate-board.jpg",
+  // });
 
-        const data = await response.json();
-        const photos: GalleryPhoto[] = data.photos || [];
+  // useEffect(() => {
+  //   async function fetchImages() {
+  //     try {
+  //       const response = await fetch("/api/gallery");
+  //       if (!response.ok) return;
 
-        if (photos.length >= 3) {
-          // Shuffle and pick 3 random images
-          const shuffled = [...photos].sort(() => Math.random() - 0.5);
-          setBoardImages({
-            small: shuffled[0].link,
-            medium: shuffled[1].link,
-            large: shuffled[2].link,
-          });
-        }
-      } catch (error) {
-        console.error("Failed to fetch gallery images:", error);
-        // Keep fallback images
-      }
-    }
+  //       const data = await response.json();
+  //       const photos: GalleryPhoto[] = data.photos || [];
 
-    fetchImages();
-  }, []);
+  //       if (photos.length >= 3) {
+  //         const shuffled = [...photos].sort(() => Math.random() - 0.5);
+  //         setBoardImages({
+  //           small: shuffled[0].link,
+  //           medium: shuffled[1].link,
+  //           large: shuffled[2].link,
+  //         });
+  //       }
+  //     } catch (error) {
+  //       console.error("Failed to fetch gallery images:", error);
+  //     }
+  //   }
 
-  const currentImage = selectedSize
-    ? boardImages[selectedSize]
-    : boardImages.medium;
+  //   fetchImages();
+  // }, []);
+
+  // const currentImage = selectedSize
+  //   ? boardImages[selectedSize]
+  //   : boardImages.medium;
 
   return (
     <div className="space-y-8">
@@ -65,15 +65,14 @@ export function OrderFormSection() {
           All boards are handcrafted with our signature chocolate selection
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Size Options */}
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6"> */}
           <BoardSizeSelector
             selectedSize={selectedSize}
             onSizeSelect={setSelectedSize}
           />
 
-          {/* Preview Image */}
-          <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-100">
+          {/* Preview Image - commented out temporarily */}
+          {/* <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-100">
             <Image
               src={currentImage}
               alt="Board preview"
@@ -90,8 +89,8 @@ export function OrderFormSection() {
                 </p>
               </div>
             )}
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
 
       {/* Step 2: Contact Form */}
@@ -124,8 +123,8 @@ export function OrderFormSection() {
         )}
       </div>
 
-      {/* What's Included Section */}
-      <div className="bg-muted/30 rounded-lg p-6 border border-muted-foreground/10">
+      {/* What's Included Section - commented out temporarily */}
+      {/* <div className="bg-muted/30 rounded-lg p-6 border border-muted-foreground/10">
         <h2
           className="text-xl font-bold text-deep-berry mb-2"
           style={{ fontFamily: "var(--font-heading)" }}
@@ -146,16 +145,16 @@ export function OrderFormSection() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
 
-const ingredients = [
-  { name: "Assorted premium chocolates", icon: "🍫" },
-  { name: "Artisan truffles", icon: "🟤" },
-  { name: "Chocolate-covered strawberries", icon: "🍓" },
-  { name: "Caramel clusters", icon: "🍬" },
-  { name: "Chocolate-dipped pretzels", icon: "🥨" },
-  { name: "Roasted nuts", icon: "🥜" },
-];
+// const ingredients = [
+//   { name: "Assorted premium chocolates", icon: "🍫" },
+//   { name: "Artisan truffles", icon: "🟤" },
+//   { name: "Chocolate-covered strawberries", icon: "🍓" },
+//   { name: "Caramel clusters", icon: "🍬" },
+//   { name: "Chocolate-dipped pretzels", icon: "🥨" },
+//   { name: "Roasted nuts", icon: "🥜" },
+// ];

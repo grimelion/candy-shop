@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { sendWhatsAppOrder } from "@/app/actions/sendWhatsAppOrder";
+import { sendTelegramOrder } from "@/app/actions/sendTelegramOrder";
 
 const phoneRegex = /^[\d\s\-\(\)\+]{10,}$/;
 
@@ -61,8 +61,8 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
     // Log order data to console for debugging
     console.log("Order submitted:", { ...data, size: selectedSize });
 
-    // Send WhatsApp notification
-    const result = await sendWhatsAppOrder({
+    // Send Telegram notification
+    const result = await sendTelegramOrder({
       name: data.name,
       phone: data.phone,
       email: data.email,
@@ -70,7 +70,7 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
     });
 
     if (result.error) {
-      console.error("WhatsApp notification failed:", result.error);
+      console.error("Telegram notification failed:", result.error);
       setSubmitError("Something went wrong. Please try again or call us directly.");
       setIsSubmitting(false);
       return;
