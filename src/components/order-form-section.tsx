@@ -1,55 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  BoardSizeSelector,
-  BoardImages,
-} from "@/components/board-size-selector";
+import { useState } from "react";
+import { BoardSizeSelector } from "@/components/board-size-selector";
 import { OrderForm } from "@/components/order-form";
-
-interface GalleryPhoto {
-  id: string;
-  name: string;
-  thumbnailLink: string;
-  link: string;
-}
 
 export function OrderFormSection() {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [boardImages, setBoardImages] = useState<BoardImages>({});
-  const [imagesLoading, setImagesLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchGalleryImages() {
-      try {
-        const response = await fetch("/api/gallery");
-        if (!response.ok) throw new Error("Failed to fetch gallery");
-        const data = await response.json();
-        const photos: GalleryPhoto[] = data.photos || [];
-
-        if (photos.length >= 3) {
-          setBoardImages({
-            small: photos[0]?.link,
-            medium: photos[1]?.link,
-            large: photos[2]?.link,
-          });
-        } else if (photos.length > 0) {
-          setBoardImages({
-            small: photos[0]?.link,
-            medium: photos[Math.min(1, photos.length - 1)]?.link,
-            large: photos[Math.min(2, photos.length - 1)]?.link,
-          });
-        }
-      } catch (error) {
-        console.error("Failed to load gallery images:", error);
-      } finally {
-        setImagesLoading(false);
-      }
-    }
-
-    fetchGalleryImages();
-  }, []);
 
   return (
     <div className="space-y-8">
@@ -67,8 +24,6 @@ export function OrderFormSection() {
         <BoardSizeSelector
           selectedSize={selectedSize}
           onSizeSelect={setSelectedSize}
-          images={boardImages}
-          imagesLoading={imagesLoading}
         />
       </div>
 

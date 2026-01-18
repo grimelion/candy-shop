@@ -36,108 +36,106 @@ const boardSizes: BoardSize[] = [
   },
 ];
 
-export interface BoardImages {
-  small?: string;
-  medium?: string;
-  large?: string;
-}
+const boardImages: Record<string, string> = {
+  small: "/images/chocolate-board-1.jpg",
+  medium: "/images/hero-chocolate-board.jpg",
+  large: "/images/event-candy-bar.jpg",
+};
 
 interface BoardSizeSelectorProps {
   selectedSize: string | null;
   onSizeSelect: (size: string) => void;
-  images?: BoardImages;
-  imagesLoading?: boolean;
 }
 
 export function BoardSizeSelector({
   selectedSize,
   onSizeSelect,
-  images,
-  imagesLoading,
 }: BoardSizeSelectorProps) {
+  const currentImage = selectedSize ? boardImages[selectedSize] : null;
+
   return (
-    <div className="grid gap-4 md:grid-cols-3">
-      {boardSizes.map((size) => {
-        const isSelected = selectedSize === size.id;
-        const imageUrl = images?.[size.id];
-
-        return (
-          <button
-            key={size.id}
-            type="button"
-            onClick={() => onSizeSelect(size.id)}
-            className={`
-              relative rounded-lg border-2 text-left transition-all overflow-hidden
-              cursor-pointer hover:border-candy-pink/50 hover:shadow-md
-              ${
-                isSelected
-                  ? "border-candy-pink ring-2 ring-candy-pink/20 bg-candy-pink/5"
-                  : "border-muted-foreground/20 bg-white"
-              }
-            `}
-          >
-            {/* Image section */}
-            <div className="w-full aspect-[4/3] bg-muted/30 overflow-hidden">
-              {imagesLoading ? (
-                <div className="w-full h-full animate-pulse bg-muted/50" />
-              ) : imageUrl ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  src={imageUrl}
-                  alt={`${size.name} chocolate board`}
-                  className="w-full h-full object-cover object-center"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-muted/30">
-                  <span className="text-4xl">🍫</span>
-                </div>
-              )}
+    <div className="grid gap-6 md:grid-cols-2">
+      {/* Preview Image */}
+      <div className="order-1 md:order-2">
+        <div className="sticky top-4 rounded-xl overflow-hidden bg-muted/30 aspect-square">
+          {currentImage ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={currentImage}
+              alt="Selected board preview"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground">
+              <span className="text-6xl mb-4">🍫</span>
+              <p className="text-sm">Select a size to preview</p>
             </div>
+          )}
+        </div>
+      </div>
 
-            {/* Popular badge */}
-            {size.popular && (
-              <span className="absolute top-2 left-1/2 -translate-x-1/2 bg-candy-pink text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
-                Most Popular
-              </span>
-            )}
+      {/* Size Cards */}
+      <div className="order-2 md:order-1 space-y-3">
+        {boardSizes.map((size) => {
+          const isSelected = selectedSize === size.id;
 
-            {/* Selection indicator */}
-            <div
+          return (
+            <button
+              key={size.id}
+              type="button"
+              onClick={() => onSizeSelect(size.id)}
               className={`
-                absolute top-2 right-2 w-6 h-6 rounded-full border-2 flex items-center justify-center bg-white/80
+                relative w-full p-4 rounded-lg border-2 text-left transition-all
+                cursor-pointer hover:border-candy-pink/50 hover:shadow-md
                 ${
                   isSelected
-                    ? "bg-candy-pink border-candy-pink"
-                    : "border-muted-foreground/30"
+                    ? "border-candy-pink ring-2 ring-candy-pink/20 bg-candy-pink/5"
+                    : "border-muted-foreground/20 bg-white"
                 }
               `}
             >
-              {isSelected && <Check className="w-4 h-4 text-white" />}
-            </div>
+              {/* Popular badge */}
+              {size.popular && (
+                <span className="absolute -top-2 left-4 bg-candy-pink text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+                  Most Popular
+                </span>
+              )}
 
-            {/* Content */}
-            <div className="p-4">
-              <h3
-                className="text-xl font-bold text-deep-berry mb-1"
-                style={{ fontFamily: "var(--font-heading)" }}
+              {/* Selection indicator */}
+              <div
+                className={`
+                  absolute top-4 right-4 w-5 h-5 rounded-full border-2 flex items-center justify-center
+                  ${
+                    isSelected
+                      ? "bg-candy-pink border-candy-pink"
+                      : "border-muted-foreground/30"
+                  }
+                `}
               >
-                {size.name}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-3">
-                {size.description}
-              </p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-deep-berry">
-                  {size.price}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  · {size.serves}
-                </span>
+                {isSelected && <Check className="w-3 h-3 text-white" />}
               </div>
-            </div>
-          </button>
-        );
-      })}
+
+              {/* Content */}
+              <div className="pr-8">
+                <div className="flex items-baseline gap-3 mb-1">
+                  <h3
+                    className="text-lg font-bold text-deep-berry"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    {size.name}
+                  </h3>
+                  <span className="text-2xl font-bold text-deep-berry">
+                    {size.price}
+                  </span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {size.description} · {size.serves}
+                </p>
+              </div>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
