@@ -50,9 +50,6 @@ export function LocationHours() {
             <div className="mb-6">
               <h3 className="text-2xl font-bold text-deep-berry mb-2 flex items-center gap-3" style={{ fontFamily: "var(--font-heading)" }}>
                 Store Hours
-                <Badge variant={status === "open" ? "default" : "secondary"}>
-                  {status === "open" ? "Open Now" : "Closed"}
-                </Badge>
               </h3>
             </div>
             <div className="space-y-4">

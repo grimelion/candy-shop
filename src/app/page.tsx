@@ -14,11 +14,14 @@ import { siteConfig } from "@/content/site";
 export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Store",
+    "@type": ["Store", "LocalBusiness"],
+    "@id": "https://www.googahliniscandy.com/#organization",
     name: siteConfig.name,
+    alternateName: "Googahlini's Candy Land",
     description: siteConfig.tagline,
-    url: "https://googahlinis.com",
+    url: "https://www.googahliniscandy.com",
     telephone: siteConfig.phone,
+    email: "contact@googahlinis.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "3605 Chapel Rd",
@@ -53,14 +56,26 @@ export default function Home() {
       },
     ],
     priceRange: "$$",
-    image: "https://googahlinis.com/og-image.jpg",
+    image: "https://www.googahliniscandy.com/og-image.jpg",
+    logo: "https://www.googahliniscandy.com/og-image.jpg",
+    currenciesAccepted: "USD",
+    paymentAccepted: "Cash, Credit Card, Debit Card",
+    servesCuisine: "Candy & Confectionery",
+    hasMap: "https://www.google.com/maps/search/?api=1&query=Googahlini's+Candy+Land+Newtown+Square+PA",
     sameAs: [
-      "https://www.instagram.com/googahlinis_candy/",
-      "https://www.yelp.com/biz/googahlinis-candy-land-newtown-square",
+      "https://www.facebook.com/share/1N4rW7vem6/?mibextid=wwXIfr",
+      "https://www.instagram.com/googahlinis_candy?igsh=MXRncXZ0MHQ3amM3dQ==",
+      "https://m.yelp.com/biz/googahlinis-candy-land-newtown-square",
+      "https://www.tiktok.com/@googahliniscandyland?_r=1&_t=ZM-91N25TETML5",
     ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "50",
+    },
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://googahlinis.com/?q={search_term_string}",
+      target: "https://www.googahliniscandy.com/?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };

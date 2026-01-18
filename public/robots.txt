@@ -1,0 +1,11 @@
+# robots.txt for Googahlini's Candy Land
+# https://www.googahliniscandy.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.googahliniscandy.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
