@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { sendWhatsAppOrder } from "@/app/actions/sendWhatsAppOrder";
 
 const phoneRegex = /^[\d\s\-\(\)\+]{10,}$/;
 
@@ -36,6 +37,7 @@ interface OrderFormProps {
 export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sizeError, setSizeError] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const form = useForm<OrderFormValues>({
     resolver: zodResolver(orderFormSchema),
@@ -53,10 +55,26 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
       return;
     }
     setSizeError(false);
+    setSubmitError(null);
     setIsSubmitting(true);
 
-    // Log order data to console
+    // Log order data to console for debugging
     console.log("Order submitted:", { ...data, size: selectedSize });
+
+    // Send WhatsApp notification
+    const result = await sendWhatsAppOrder({
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      size: selectedSize,
+    });
+
+    if (result.error) {
+      console.error("WhatsApp notification failed:", result.error);
+      setSubmitError("Something went wrong. Please try again or call us directly.");
+      setIsSubmitting(false);
+      return;
+    }
 
     // Call success callback
     onSubmitSuccess();
@@ -71,6 +89,10 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
           <p className="text-destructive text-sm">
             Please select a board size above before submitting
           </p>
+        )}
+
+        {submitError && (
+          <p className="text-destructive text-sm">{submitError}</p>
         )}
 
         <FormField
@@ -135,7 +157,7 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
           size="lg"
           disabled={isDisabled || isSubmitting}
         >
-          {isSubmitting ? "Submitting..." : "Submit Order Request"}
+          {isSubmitting ? "Placing Order..." : "Place Order"}
         </Button>
       </form>
     </Form>
