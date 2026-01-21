@@ -84,7 +84,7 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         {sizeError && (
           <p className="text-destructive text-sm">
             Please select a board size above before submitting
@@ -100,11 +100,12 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-deep-berry">Name</FormLabel>
+              <FormLabel className="text-deep-berry text-base font-semibold">Name</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Your name"
                   disabled={isDisabled || isSubmitting}
+                  className="h-12 text-base text-gray-900 border-gray-300"
                   {...field}
                 />
               </FormControl>
@@ -118,12 +119,13 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-deep-berry">Phone</FormLabel>
+              <FormLabel className="text-deep-berry text-base font-semibold">Phone</FormLabel>
               <FormControl>
                 <Input
                   type="tel"
                   placeholder="Your phone number"
                   disabled={isDisabled || isSubmitting}
+                  className="h-12 text-base text-gray-900 border-gray-300"
                   {...field}
                 />
               </FormControl>
@@ -137,12 +139,13 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-deep-berry">Email</FormLabel>
+              <FormLabel className="text-deep-berry text-base font-semibold">Email</FormLabel>
               <FormControl>
                 <Input
                   type="email"
                   placeholder="your@email.com"
                   disabled={isDisabled || isSubmitting}
+                  className="h-12 text-base text-gray-900 border-gray-300"
                   {...field}
                 />
               </FormControl>

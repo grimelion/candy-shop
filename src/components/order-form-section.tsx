@@ -1,55 +1,17 @@
 "use client";
 
 import { useState } from "react";
-// import { useEffect } from "react";
-// import Image from "next/image";
-import { BoardSizeSelector } from "@/components/board-size-selector";
+import Image from "next/image";
+import { BoardSizeSelector, boardImages } from "@/components/board-size-selector";
 import { OrderForm } from "@/components/order-form";
 
-// interface GalleryPhoto {
-//   id: string;
-//   name: string;
-//   link: string;
-// }
-
 export function OrderFormSection() {
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>("medium");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // const [boardImages, setBoardImages] = useState<Record<string, string>>({
-  //   small: "/images/artisanal-sweets.jpg",
-  //   medium: "/images/chocolate-board-1.jpg",
-  //   large: "/images/hero-chocolate-board.jpg",
-  // });
-
-  // useEffect(() => {
-  //   async function fetchImages() {
-  //     try {
-  //       const response = await fetch("/api/gallery");
-  //       if (!response.ok) return;
-
-  //       const data = await response.json();
-  //       const photos: GalleryPhoto[] = data.photos || [];
-
-  //       if (photos.length >= 3) {
-  //         const shuffled = [...photos].sort(() => Math.random() - 0.5);
-  //         setBoardImages({
-  //           small: shuffled[0].link,
-  //           medium: shuffled[1].link,
-  //           large: shuffled[2].link,
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.error("Failed to fetch gallery images:", error);
-  //     }
-  //   }
-
-  //   fetchImages();
-  // }, []);
-
-  // const currentImage = selectedSize
-  //   ? boardImages[selectedSize]
-  //   : boardImages.medium;
+  const currentImage = selectedSize
+    ? boardImages[selectedSize]
+    : boardImages.medium;
 
   return (
     <div className="space-y-8">
@@ -65,32 +27,32 @@ export function OrderFormSection() {
           All boards are handcrafted with our signature chocolate selection
         </p>
 
-        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6"> */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <BoardSizeSelector
             selectedSize={selectedSize}
             onSizeSelect={setSelectedSize}
           />
 
-          {/* Preview Image - commented out temporarily */}
-          {/* <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-gray-100">
-            <Image
-              src={currentImage}
-              alt="Board preview"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-              unoptimized
-            />
-            {!selectedSize && (
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                <p className="text-white text-lg font-medium bg-black/50 px-4 py-2 rounded-lg">
-                  Select a size to preview
-                </p>
-              </div>
-            )}
-          </div> */}
-        {/* </div> */}
+          <div className="lg:flex lg:items-center">
+            <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src={currentImage}
+                alt="Board preview"
+                fill
+                className="object-cover rounded-xl"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+              {!selectedSize && (
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <p className="text-white text-lg font-medium bg-black/50 px-4 py-2 rounded-lg">
+                    Select a size to preview
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Step 2: Contact Form */}
@@ -122,39 +84,6 @@ export function OrderFormSection() {
           />
         )}
       </div>
-
-      {/* What's Included Section - commented out temporarily */}
-      {/* <div className="bg-muted/30 rounded-lg p-6 border border-muted-foreground/10">
-        <h2
-          className="text-xl font-bold text-deep-berry mb-2"
-          style={{ fontFamily: "var(--font-heading)" }}
-        >
-          What&apos;s Included
-        </h2>
-        <p className="text-muted-foreground mb-4 text-sm">
-          All boards feature our signature selection
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {ingredients.map((item) => (
-            <div
-              key={item.name}
-              className="flex items-center gap-2 text-sm text-deep-berry/80"
-            >
-              <span>{item.icon}</span>
-              <span>{item.name}</span>
-            </div>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 }
-
-// const ingredients = [
-//   { name: "Assorted premium chocolates", icon: "🍫" },
-//   { name: "Artisan truffles", icon: "🟤" },
-//   { name: "Chocolate-covered strawberries", icon: "🍓" },
-//   { name: "Caramel clusters", icon: "🍬" },
-//   { name: "Chocolate-dipped pretzels", icon: "🥨" },
-//   { name: "Roasted nuts", icon: "🥜" },
-// ];

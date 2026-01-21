@@ -5,29 +5,41 @@ import { Check } from "lucide-react";
 const boardSizes = [
   {
     id: "small",
-    name: "Sweet Treats",
-    price: "$45",
-    serves: "2-4 people",
-    description: "Perfect for small gatherings or personal gifts",
+    name: "Small Chocolate Board",
+    price: "Starting at $45",
+    weight: "1lb",
+    serves: "1-3 people",
+    description: "A thoughtful curated selection of mixed chocolates including milk, dark & seasonal",
+    image: "/images/boards/small.jpeg",
     popular: false,
   },
   {
     id: "medium",
-    name: "Celebration Board",
-    price: "$85",
+    name: "Medium Chocolate Board",
+    price: "Starting at $85",
+    weight: "3lbs",
     serves: "6-10 people",
-    description: "Ideal for parties and special occasions",
+    description: "A generous assortment of mixed chocolates with a balance of classic and gourmet. Salted caramels, chocolate pretzels, mix of chocolate nuts & specialty confections",
+    image: "/images/boards/medium.jpeg",
     popular: true,
   },
   {
     id: "large",
-    name: "Grand Feast",
-    price: "$150",
-    serves: "12+ people",
-    description: "Show-stopping centerpiece for large events",
+    name: "Large Chocolate Board",
+    price: "Starting at $160",
+    weight: "6lbs",
+    serves: "12-15 people",
+    description: "A show stopping centerpiece offering an abundant display of milk & dark chocolates, small batch caramels & truffles perfect for every chocolate lover",
+    image: "/images/boards/large.jpeg",
     popular: false,
   },
 ] as const;
+
+export const boardImages: Record<string, string> = {
+  small: "/images/boards/small.jpeg",
+  medium: "/images/boards/medium.jpeg",
+  large: "/images/boards/large.jpeg",
+};
 
 interface BoardSizeSelectorProps {
   selectedSize: string | null;
@@ -72,16 +84,19 @@ export function BoardSizeSelector({
 
             <div className="flex items-center justify-between">
               <div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 mb-1">
                   <span className="text-lg font-bold text-deep-berry">
                     {size.name}
                   </span>
-                  <span className="text-xl font-bold text-deep-berry">
-                    {size.price}
-                  </span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">
-                  {size.description} · {size.serves}
+                <span className="inline-block text-2xl font-bold text-candy-pink mb-2">
+                  {size.price}
+                </span>
+                <p className="text-sm text-gray-600 mb-2">
+                  Weight: {size.weight} · Serves {size.serves}
+                </p>
+                <p className="text-sm text-gray-700">
+                  {size.description}
                 </p>
               </div>
 
