@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { sendTelegramOrder } from "@/app/actions/sendTelegramOrder";
+import { sendSMSOrder } from "@/app/actions/sendSMSOrder";
 
 const phoneRegex = /^[\d\s\-\(\)\+]{10,}$/;
 
@@ -25,6 +25,9 @@ const orderFormSchema = z.object({
     .min(10, "Phone must be at least 10 digits")
     .regex(phoneRegex, "Please enter a valid phone number"),
   email: z.string().email("Please enter a valid email address"),
+  smsConsent: z
+    .boolean()
+    .refine((val) => val === true, "You must agree to receive SMS notifications"),
 });
 
 type OrderFormValues = z.infer<typeof orderFormSchema>;
@@ -45,6 +48,7 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
       name: "",
       phone: "",
       email: "",
+      smsConsent: false,
     },
   });
 
@@ -61,8 +65,8 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
     // Log order data to console for debugging
     console.log("Order submitted:", { ...data, size: selectedSize });
 
-    // Send Telegram notification
-    const result = await sendTelegramOrder({
+    // Send SMS notification
+    const result = await sendSMSOrder({
       name: data.name,
       phone: data.phone,
       email: data.email,
@@ -70,7 +74,7 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
     });
 
     if (result.error) {
-      console.error("Telegram notification failed:", result.error);
+      console.error("SMS notification failed:", result.error);
       setSubmitError("Something went wrong. Please try again or call us directly.");
       setIsSubmitting(false);
       return;
@@ -150,6 +154,30 @@ export function OrderForm({ selectedSize, onSubmitSuccess }: OrderFormProps) {
                 />
               </FormControl>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="smsConsent"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border border-gray-300 p-4">
+              <FormControl>
+                <input
+                  type="checkbox"
+                  checked={field.value}
+                  onChange={field.onChange}
+                  disabled={isDisabled || isSubmitting}
+                  className="mt-1 h-4 w-4"
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel className="text-sm font-normal text-gray-700">
+                  I agree to receive order updates and notifications via SMS to the phone number provided above.
+                </FormLabel>
+                <FormMessage />
+              </div>
             </FormItem>
           )}
         />
