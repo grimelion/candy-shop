@@ -9,6 +9,8 @@ import { LocationHours } from "@/components/location-hours";
 import { ContactForm } from "@/components/contact-form";
 import { SiteFooter } from "@/components/site-footer";
 import { WavyDivider } from "@/components/wavy-divider";
+import { StickyOrderBar } from "@/components/sticky-order-bar";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { siteConfig } from "@/content/site";
 
 export default function Home() {
@@ -89,32 +91,54 @@ export default function Home() {
       <SiteHeader />
       <main className="overflow-hidden">
         <Hero />
-        <FeatureCards />
-        <section className="relative py-16 bg-gradient-to-b from-white to-gray-50">
-          <WavyDivider position="top" color="white" />
 
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Our Sweet Gallery
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Explore our collection of handcrafted candy boards, custom gift
-                arrangements, and special event treats
-              </p>
+        <ScrollReveal>
+          <FeatureCards />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <section className="relative py-16 bg-gradient-to-b from-white to-gray-50">
+            <WavyDivider position="top" color="white" />
+
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                  Our Sweet Gallery
+                </h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Explore our collection of handcrafted candy boards, custom gift
+                  arrangements, and special event treats
+                </p>
+              </div>
+              <PhotoGallery />
             </div>
-            <PhotoGallery />
-          </div>
 
-          <WavyDivider position="bottom" color="rgb(249, 250, 251)" />
-        </section>
-        <PricingCards />
-        <B2bStrip />
-        <Testimonials />
-        <LocationHours />
-        <ContactForm />
+            <WavyDivider position="bottom" color="rgb(249, 250, 251)" />
+          </section>
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <PricingCards />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <B2bStrip />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <Testimonials />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <LocationHours />
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <ContactForm />
+        </ScrollReveal>
       </main>
       <SiteFooter />
+      <StickyOrderBar />
     </>
   );
 }

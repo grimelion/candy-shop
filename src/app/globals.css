@@ -302,7 +302,7 @@
     font-weight: 600;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(255, 107, 157, 0.35);
-    transition: all 0.2s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     display: inline-block;
     text-align: center;
@@ -311,10 +311,12 @@
 
   .btn-primary:hover {
     box-shadow: 0 6px 25px rgba(255, 107, 157, 0.45);
+    transform: translateY(-2px);
   }
 
   .btn-primary:active {
-    opacity: 0.9;
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.35);
   }
 
   .btn-secondary {
@@ -326,7 +328,7 @@
     font-size: 1.063rem;
     font-weight: 600;
     letter-spacing: 0.5px;
-    transition: all 0.2s ease-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     display: inline-block;
     text-align: center;
@@ -337,10 +339,12 @@
     background: var(--deep-berry);
     color: white;
     box-shadow: 0 4px 20px rgba(139, 35, 70, 0.3);
+    transform: translateY(-2px);
   }
 
   .btn-secondary:active {
-    opacity: 0.9;
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(139, 35, 70, 0.2);
   }
 
   /* Card System */
@@ -350,17 +354,24 @@
     padding: 2.5rem;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 107, 157, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card:hover {
     box-shadow: 0 15px 50px rgba(255, 107, 157, 0.2);
+    transform: translateY(-4px);
   }
 
   .card img {
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     margin-bottom: 1.5rem;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+
+  .card:hover img {
+    transform: scale(1.03);
   }
 
   .category-card {
@@ -370,12 +381,13 @@
     text-align: center;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 107, 157, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
   }
 
   .category-card:hover {
     box-shadow: 0 15px 50px rgba(255, 107, 157, 0.2);
+    transform: translateY(-4px);
   }
 
   .category-card .icon {
@@ -392,7 +404,7 @@
     border: 1px solid rgba(0, 0, 0, 0.06);
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .pricing-card::before {
@@ -408,6 +420,7 @@
 
   .pricing-card:hover {
     box-shadow: 0 12px 40px rgba(255, 107, 157, 0.2);
+    transform: translateY(-4px);
   }
 
   .pricing-card.featured {
@@ -454,21 +467,62 @@
     opacity: 0;
   }
 
-  @keyframes gentleBounce {
-    0%,
-    100% {
-      transform: translateY(0);
+  @keyframes slideInFromBottom {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-    50% {
-      transform: translateY(-5px);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  /* Hero CTA bounce animation - disabled */
+  .slide-in-bottom {
+    animation: slideInFromBottom 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Subtle fade-in for elements */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
 
   /* General image styling */
   img {
     border-radius: 20px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Subtle image hover effects */
+  .image-hover-zoom {
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .image-hover-zoom img {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-hover-zoom:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Smooth link transitions */
+  a {
+    transition: opacity 0.2s ease;
+  }
+
+  a:hover {
+    opacity: 0.9;
   }
 
   /* Section spacing improvements */

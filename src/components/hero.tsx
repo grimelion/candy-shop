@@ -21,7 +21,7 @@ export function Hero() {
 
       {/* Hero Content */}
       <div className="container mx-auto px-8 py-16 relative z-10">
-        <div className="max-w-[700px]">
+        <div className="max-w-[700px] animate-on-scroll">
           <h1 className="hero-title text-white mb-6">
             Handcrafted Confections That Wow
           </h1>
