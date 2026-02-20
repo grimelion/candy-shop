@@ -6,7 +6,7 @@ export default async function ContentPage() {
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-2xl font-semibold text-slate-900 mb-6">
+      <h1 className="text-xl md:text-2xl font-semibold text-slate-900 mb-4 md:mb-6">
         Content Editor
       </h1>
       <ContentForm defaultValues={config} />
