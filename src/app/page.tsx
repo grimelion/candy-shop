@@ -11,18 +11,20 @@ import { SiteFooter } from "@/components/site-footer";
 import { WavyDivider } from "@/components/wavy-divider";
 import { StickyOrderBar } from "@/components/sticky-order-bar";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { siteConfig } from "@/content/site";
+import { getSiteConfig } from "@/lib/site-config";
 
-export default function Home() {
+export default async function Home() {
+  const config = await getSiteConfig();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["Store", "LocalBusiness"],
     "@id": "https://www.googahliniscandy.com/#organization",
-    name: siteConfig.name,
+    name: config.storeName,
     alternateName: "Googahlini's Candy Land",
-    description: siteConfig.tagline,
+    description: config.tagline,
     url: "https://www.googahliniscandy.com",
-    telephone: siteConfig.phone,
+    telephone: config.phone,
     email: "contact@googahlinis.com",
     address: {
       "@type": "PostalAddress",
@@ -88,12 +90,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SiteHeader />
+      <SiteHeader storeName={config.storeName} phone={config.phone} />
       <main className="overflow-hidden">
-        <Hero />
+        <Hero phone={config.phone} />
 
         <ScrollReveal>
-          <FeatureCards />
+          <FeatureCards featured={config.featured} />
         </ScrollReveal>
 
         <ScrollReveal>
@@ -137,8 +139,14 @@ export default function Home() {
           <ContactForm />
         </ScrollReveal>
       </main>
-      <SiteFooter />
-      <StickyOrderBar />
+      <SiteFooter
+        storeName={config.storeName}
+        tagline={config.tagline}
+        phone={config.phone}
+        address={config.address}
+        hours={config.hours}
+      />
+      <StickyOrderBar phone={config.phone} />
     </>
   );
 }

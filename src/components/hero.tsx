@@ -1,8 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
-import { siteConfig } from "@/content/site"
 
-export function Hero() {
+interface HeroProps {
+  phone: string;
+}
+
+export function Hero({ phone }: HeroProps) {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background Image */}
@@ -31,7 +34,7 @@ export function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4">
-            <a href={`tel:${siteConfig.phone}`} className="btn-secondary">
+            <a href={`tel:${phone}`} className="btn-secondary">
               Call Us
             </a>
             <Link href="/order" className="btn-primary">

@@ -1,8 +1,16 @@
 import Link from "next/link"
 import { Phone, MapPin, Facebook, Instagram, Star, Music } from "lucide-react"
-import { siteConfig } from "@/content/site"
+import type { SiteConfig } from "@/types/site-config"
 
-export function SiteFooter() {
+interface SiteFooterProps {
+  storeName: string;
+  tagline: string;
+  phone: string;
+  address: string;
+  hours: SiteConfig["hours"];
+}
+
+export function SiteFooter({ storeName, tagline, phone, address, hours }: SiteFooterProps) {
   return (
     <footer className="bg-deep-berry" style={{ backgroundColor: 'var(--deep-berry)' }}>
       <div className="container mx-auto px-8 py-12">
@@ -10,9 +18,9 @@ export function SiteFooter() {
           {/* Business Info */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold" style={{ fontFamily: "var(--font-script)", color: 'var(--candy-pink)' }}>
-              {siteConfig.name}
+              {storeName}
             </h3>
-            <p className="text-sm" style={{ color: 'rgba(255, 248, 240, 0.9)' }}>{siteConfig.tagline}</p>
+            <p className="text-sm" style={{ color: 'rgba(255, 248, 240, 0.9)' }}>{tagline}</p>
           </div>
 
           {/* Contact Info */}
@@ -21,13 +29,13 @@ export function SiteFooter() {
             <div className="space-y-2 text-sm" style={{ color: 'rgba(255, 248, 240, 0.85)' }}>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" style={{ color: 'white' }} />
-                <Link href={`tel:${siteConfig.phone}`} className="hover:text-candy-pink transition-colors" style={{ color: 'inherit' }}>
-                  {siteConfig.phone}
+                <Link href={`tel:${phone}`} className="hover:text-candy-pink transition-colors" style={{ color: 'inherit' }}>
+                  {phone}
                 </Link>
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 mt-0.5" style={{ color: 'white' }} />
-                <span>{siteConfig.address}</span>
+                <span>{address}</span>
               </div>
             </div>
           </div>
@@ -36,10 +44,10 @@ export function SiteFooter() {
           <div className="space-y-4">
             <h4 className="font-semibold" style={{ fontFamily: "var(--font-heading)", color: 'var(--cream)' }}>Hours</h4>
             <div className="space-y-1 text-sm" style={{ color: 'rgba(255, 248, 240, 0.85)' }}>
-              {Object.entries(siteConfig.hours).map(([day, hours]) => (
+              {Object.entries(hours).map(([day, hoursStr]) => (
                 <div key={day} className="flex justify-between">
                   <span className="capitalize font-medium">{day}:</span>
-                  <span>{hours}</span>
+                  <span>{hoursStr}</span>
                 </div>
               ))}
             </div>
@@ -90,7 +98,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-8 pt-8 text-center text-sm" style={{ borderTop: '1px solid rgba(255, 248, 240, 0.2)', color: 'rgba(255, 248, 240, 0.6)' }}>
-          <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {storeName}. All rights reserved.</p>
         </div>
       </div>
     </footer>

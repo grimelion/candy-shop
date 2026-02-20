@@ -1,6 +1,13 @@
-import { sections } from "@/content/sections"
+import type { FeaturedItem } from "@/types/site-config"
 
-export function FeatureCards() {
+interface FeatureCardsProps {
+  featured: {
+    title: string;
+    items: FeaturedItem[];
+  };
+}
+
+export function FeatureCards({ featured }: FeatureCardsProps) {
   const icons = ["🍫", "🎁", "🍭"];
 
   return (
@@ -23,7 +30,7 @@ export function FeatureCards() {
         <div className="container mx-auto px-8">
           <div className="text-center space-y-4 mb-12">
             <h2 className="section-title text-white" style={{ fontSize: "var(--fs-h2)" }}>
-              {sections.featured.title}
+              {featured.title}
             </h2>
             <p className="text-xl text-white/90 max-w-2xl mx-auto">
               Discover our range of premium candy creations, perfect for every occasion
@@ -34,7 +41,7 @@ export function FeatureCards() {
         {/* Mobile: Horizontal scroll, Desktop: Grid */}
         <div className="md:hidden overflow-x-auto scrollbar-hide px-4">
           <div className="flex gap-4 pb-4" style={{ scrollSnapType: 'x mandatory' }}>
-            {sections.featured.items.map((item, index) => (
+            {featured.items.map((item, index) => (
               <div
                 key={index}
                 className="category-card flex-shrink-0 w-[280px]"
@@ -60,7 +67,7 @@ export function FeatureCards() {
         {/* Desktop: Grid */}
         <div className="hidden md:block container mx-auto px-8">
           <div className="grid grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {sections.featured.items.map((item, index) => (
+            {featured.items.map((item, index) => (
               <div key={index} className="category-card">
                 <div className="icon text-6xl mb-4">
                   {icons[index]}
