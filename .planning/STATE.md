@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 5 of 5 (Admin Panel CMS)
-Plan: 4 of 5 in phase — Complete
-Status: In progress
-Last activity: 2026-02-20 — Completed 05-04-PLAN.md
+Plan: 5 of 5 in phase — Complete
+Status: Phase complete
+Last activity: 2026-02-20 — Completed 05-05-PLAN.md
 
-Progress: █████████░ 93%
+Progress: ██████████ 100%
 
 ## Performance Metrics
 
@@ -61,6 +61,8 @@ Recent decisions affecting current work:
 - Phase 5 (03): opengraph-image.tsx deferred — edge runtime prevents async getSiteConfig() call
 - Phase 5 (04): Flat FormData dot-notation keys (hours.monday) for nested Zod schema fields
 - Phase 5 (04): StoreInfoForm in _components/ subdirectory following Next.js colocation convention
+- Phase 5 (05): BoardsForm uses native multipart form (not react-hook-form) for file upload compatibility
+- Phase 5 (05): z.number() client / z.coerce.number() server to avoid zodResolver type mismatch
 
 ### Roadmap Evolution
 
@@ -76,6 +78,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-20 18:44
-Stopped at: Completed 05-04-PLAN.md (Phase 5, plan 4 of 5 complete)
+Last session: 2026-02-20 20:00
+Stopped at: Completed 05-05-PLAN.md (Phase 5, plan 5 of 5 complete — phase done)
 Resume file: None

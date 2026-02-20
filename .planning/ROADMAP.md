@@ -79,7 +79,7 @@ Plans:
 - [x] 05-02: Config data layer (SiteConfig types + Vercel Blob read/write helpers)
 - [x] 05-03: Update site to use config (async pages + props-based components)
 - [x] 05-04: Admin dashboard shell and store info editor
-- [ ] 05-05: TBD
+- [x] 05-05: Content editor and board editor with image upload
 
 ## Progress
 
@@ -93,4 +93,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 3.1 → 4 → 5
 | 3. Order Form & Validation | 1/1 | Complete | 2026-01-17 |
 | 3.1. Board Images & Ingredients | 1/1 | Complete | 2026-01-17 |
 | 4. WhatsApp Integration | 0/1 | Not started | - |
-| 5. Admin Panel (CMS) | 4/5 | In progress | - |
+| 5. Admin Panel (CMS) | 5/5 | Complete | 2026-02-20 |
