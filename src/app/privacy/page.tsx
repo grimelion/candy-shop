@@ -1,10 +1,13 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { getSiteConfig } from "@/lib/site-config"
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const config = await getSiteConfig()
+
   return (
     <>
-      <SiteHeader />
+      <SiteHeader storeName={config.storeName} phone={config.phone} />
       <main className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-foreground mb-8">Privacy Policy</h1>
@@ -89,7 +92,13 @@ export default function PrivacyPage() {
           </div>
         </div>
       </main>
-      <SiteFooter />
+      <SiteFooter
+        storeName={config.storeName}
+        tagline={config.tagline}
+        phone={config.phone}
+        address={config.address}
+        hours={config.hours}
+      />
     </>
   )
 }

@@ -1,10 +1,13 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { getSiteConfig } from "@/lib/site-config"
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const config = await getSiteConfig()
+
   return (
     <>
-      <SiteHeader />
+      <SiteHeader storeName={config.storeName} phone={config.phone} />
       <main className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-foreground mb-8">Terms of Service</h1>
@@ -108,7 +111,13 @@ export default function TermsPage() {
           </div>
         </div>
       </main>
-      <SiteFooter />
+      <SiteFooter
+        storeName={config.storeName}
+        tagline={config.tagline}
+        phone={config.phone}
+        address={config.address}
+        hours={config.hours}
+      />
     </>
   )
 }
