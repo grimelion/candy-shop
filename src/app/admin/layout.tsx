@@ -14,7 +14,7 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="h-dvh flex flex-col md:flex-row overflow-hidden">
       {/* Navigation — top strip on mobile, sidebar on desktop */}
       <aside className="bg-slate-50 border-b md:border-b-0 md:border-r md:w-56 md:flex md:flex-col md:shrink-0">
         {/* Header row */}
@@ -57,7 +57,7 @@ export default function AdminLayout({
       </aside>
 
       {/* Main content */}
-      <main id="admin-content" className="flex-1 p-4 md:p-8 bg-white min-w-0">
+      <main id="admin-content" className="flex-1 overflow-y-auto p-4 md:p-8 bg-white min-w-0">
         {children}
       </main>
     </div>
