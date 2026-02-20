@@ -571,6 +571,13 @@
   pointer-events: auto;
 }
 
+/* Admin panel — make all form fields clearly visible */
+#admin-content [data-slot="input"],
+#admin-content [data-slot="textarea"] {
+  background-color: #f9fafb; /* gray-50 */
+  border-color: #9ca3af;     /* gray-400 */
+}
+
 /* Hide scrollbar for horizontal scroll */
 .scrollbar-hide {
   -ms-overflow-style: none;

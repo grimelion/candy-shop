@@ -46,7 +46,7 @@ export default function AdminLayout({
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 p-8 bg-white [&_[data-slot=input]]:bg-gray-50 [&_[data-slot=input]]:border-gray-400 [&_textarea]:bg-gray-50 [&_textarea]:border-gray-400">
+      <main id="admin-content" className="flex-1 p-8 bg-white">
         {children}
       </main>
     </div>
