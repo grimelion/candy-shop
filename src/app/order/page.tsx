@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Badge } from "@/components/ui/badge";
 import { OrderFormSection } from "@/components/order-form-section";
+import { getSiteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Order Chocolate Boards",
@@ -14,10 +15,12 @@ export const metadata: Metadata = {
   }
 };
 
-export default function OrderPage() {
+export default async function OrderPage() {
+  const config = await getSiteConfig();
+
   return (
     <>
-      <SiteHeader />
+      <SiteHeader storeName={config.storeName} phone={config.phone} />
       <main className="min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/5 to-secondary/5 py-20">
@@ -43,12 +46,18 @@ export default function OrderPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <OrderFormSection />
+              <OrderFormSection boards={config.boards} />
             </div>
           </div>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter
+        storeName={config.storeName}
+        tagline={config.tagline}
+        phone={config.phone}
+        address={config.address}
+        hours={config.hours}
+      />
     </>
   );
 }

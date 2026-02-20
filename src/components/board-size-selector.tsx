@@ -1,58 +1,22 @@
 "use client";
 
 import { Check } from "lucide-react";
-
-const boardSizes = [
-  {
-    id: "small",
-    name: "Small Chocolate Board",
-    price: "Starting at $45",
-    weight: "1lb",
-    serves: "1-3 people",
-    description: "A thoughtful curated selection of mixed chocolates including milk, dark & seasonal",
-    image: "/images/boards/small.jpeg",
-    popular: false,
-  },
-  {
-    id: "medium",
-    name: "Medium Chocolate Board",
-    price: "Starting at $85",
-    weight: "3lbs",
-    serves: "6-10 people",
-    description: "A generous assortment of mixed chocolates with a balance of classic and gourmet. Salted caramels, chocolate pretzels, mix of chocolate nuts & specialty confections",
-    image: "/images/boards/medium.jpeg",
-    popular: true,
-  },
-  {
-    id: "large",
-    name: "Large Chocolate Board",
-    price: "Starting at $160",
-    weight: "6lbs",
-    serves: "12-15 people",
-    description: "A show stopping centerpiece offering an abundant display of milk & dark chocolates, small batch caramels & truffles perfect for every chocolate lover",
-    image: "/images/boards/large.jpeg",
-    popular: false,
-  },
-] as const;
-
-export const boardImages: Record<string, string> = {
-  small: "/images/boards/small.jpeg",
-  medium: "/images/boards/medium.jpeg",
-  large: "/images/boards/large.jpeg",
-};
+import type { BoardSize } from "@/types/site-config";
 
 interface BoardSizeSelectorProps {
+  boards: BoardSize[];
   selectedSize: string | null;
   onSizeSelect: (size: string) => void;
 }
 
 export function BoardSizeSelector({
+  boards,
   selectedSize,
   onSizeSelect,
 }: BoardSizeSelectorProps) {
   return (
     <fieldset className="space-y-3">
-      {boardSizes.map((size) => {
+      {boards.map((size) => {
         const isSelected = selectedSize === size.id;
 
         return (

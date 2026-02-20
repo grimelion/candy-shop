@@ -2,16 +2,24 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { BoardSizeSelector, boardImages } from "@/components/board-size-selector";
+import { BoardSizeSelector } from "@/components/board-size-selector";
 import { OrderForm } from "@/components/order-form";
+import type { BoardSize } from "@/types/site-config";
 
-export function OrderFormSection() {
-  const [selectedSize, setSelectedSize] = useState<string | null>("medium");
+interface OrderFormSectionProps {
+  boards: BoardSize[];
+}
+
+export function OrderFormSection({ boards }: OrderFormSectionProps) {
+  const defaultId = boards.find((b) => b.popular)?.id ?? boards[0]?.id ?? null;
+  const [selectedSize, setSelectedSize] = useState<string | null>(defaultId);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const boardImages = Object.fromEntries(boards.map((b) => [b.id, b.imageUrl]));
 
   const currentImage = selectedSize
     ? boardImages[selectedSize]
-    : boardImages.medium;
+    : boardImages[defaultId ?? ""] ?? "";
 
   return (
     <div className="space-y-8">
@@ -29,6 +37,7 @@ export function OrderFormSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <BoardSizeSelector
+            boards={boards}
             selectedSize={selectedSize}
             onSizeSelect={setSelectedSize}
           />
