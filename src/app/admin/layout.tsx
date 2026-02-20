@@ -6,6 +6,7 @@ const navLinks = [
   { href: "/admin/site-info", label: "Store Info" },
   { href: "/admin/content", label: "Content" },
   { href: "/admin/boards", label: "Boards" },
+  { href: "/admin/password", label: "Password" },
 ]
 
 export default function AdminLayout({
