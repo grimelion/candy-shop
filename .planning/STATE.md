@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 5 of 5 (Admin Panel CMS)
-Plan: 3 of 5 in phase — Complete
+Plan: 4 of 5 in phase — Complete
 Status: In progress
-Last activity: 2026-02-20 — Completed 05-03-PLAN.md
+Last activity: 2026-02-20 — Completed 05-04-PLAN.md
 
-Progress: █████████░ 90%
+Progress: █████████░ 93%
 
 ## Performance Metrics
 
@@ -59,6 +59,8 @@ Recent decisions affecting current work:
 - Phase 5 (03): getSiteConfig() called at async page top — content flows as props to all components
 - Phase 5 (03): boardImages map derived dynamically from boards array so config drives images
 - Phase 5 (03): opengraph-image.tsx deferred — edge runtime prevents async getSiteConfig() call
+- Phase 5 (04): Flat FormData dot-notation keys (hours.monday) for nested Zod schema fields
+- Phase 5 (04): StoreInfoForm in _components/ subdirectory following Next.js colocation convention
 
 ### Roadmap Evolution
 
@@ -74,6 +76,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-20
-Stopped at: Completed 05-03-PLAN.md (Phase 5, plan 3 of 5 complete)
+Last session: 2026-02-20 18:44
+Stopped at: Completed 05-04-PLAN.md (Phase 5, plan 4 of 5 complete)
 Resume file: None
