@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 5 of 5 (Admin Panel CMS)
-Plan: 1 of 5 in phase — Complete
+Plan: 2 of 5 in phase — Complete
 Status: In progress
-Last activity: 2026-02-20 — Completed 05-01-PLAN.md
+Last activity: 2026-02-20 — Completed 05-02-PLAN.md
 
 Progress: █████████░ 90%
 
@@ -53,6 +53,9 @@ Recent decisions affecting current work:
 - Phase 3.1: Emoji icons for ingredients (no icon library added)
 - Phase 5: jose for JWT in middleware (Edge-compatible, not jsonwebtoken)
 - Phase 5: Plain ADMIN_PASSWORD string comparison — bcrypt unnecessary for single-owner
+- Phase 5: getSiteConfig() merges DEFAULT_CONFIG + stored blob so new config fields always have fallbacks
+- Phase 5: list({ prefix: 'site-config.json' }) to locate blob — no URL stored separately
+- Phase 5: addRandomSuffix: false for deterministic blob paths (always overwrites same file)
 
 ### Roadmap Evolution
 
@@ -68,6 +71,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-20 18:11
-Stopped at: Completed 05-01-PLAN.md (Phase 5, plan 1 of 5 complete)
+Last session: 2026-02-20 18:16
+Stopped at: Completed 05-02-PLAN.md (Phase 5, plan 2 of 5 complete)
 Resume file: None
