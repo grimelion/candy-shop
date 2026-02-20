@@ -77,7 +77,7 @@ Plans:
 Plans:
 - [x] 05-01: Admin auth (middleware + login page + JWT cookie session)
 - [x] 05-02: Config data layer (SiteConfig types + Vercel Blob read/write helpers)
-- [ ] 05-03: TBD
+- [x] 05-03: Update site to use config (async pages + props-based components)
 - [ ] 05-04: TBD
 - [ ] 05-05: TBD
 
@@ -93,4 +93,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 3.1 → 4 → 5
 | 3. Order Form & Validation | 1/1 | Complete | 2026-01-17 |
 | 3.1. Board Images & Ingredients | 1/1 | Complete | 2026-01-17 |
 | 4. WhatsApp Integration | 0/1 | Not started | - |
-| 5. Admin Panel (CMS) | 2/5 | In progress | - |
+| 5. Admin Panel (CMS) | 3/5 | In progress | - |

@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 5 of 5 (Admin Panel CMS)
-Plan: 2 of 5 in phase — Complete
+Plan: 3 of 5 in phase — Complete
 Status: In progress
-Last activity: 2026-02-20 — Completed 05-02-PLAN.md
+Last activity: 2026-02-20 — Completed 05-03-PLAN.md
 
 Progress: █████████░ 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 3.2 min
-- Total execution time: 0.3 hours
+- Total plans completed: 6
+- Average duration: 3.3 min
+- Total execution time: 0.35 hours
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: █████████░ 90%
 | 2. Board Size Selection | 1 | 3 min | 3 min |
 | 3. Order Form & Validation | 1 | 2 min | 2 min |
 | 3.1. Board Images & Ingredients | 1 | 4 min | 4 min |
-| 5. Admin Panel (CMS) | 1 | 6 min | 6 min |
+| 5. Admin Panel (CMS) | 2 | 10 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 3 min, 3 min, 2 min, 4 min, 6 min
+- Last 5 plans: 3 min, 2 min, 4 min, 6 min, 4 min
 - Trend: —
 
 ## Accumulated Context
@@ -56,6 +56,9 @@ Recent decisions affecting current work:
 - Phase 5: getSiteConfig() merges DEFAULT_CONFIG + stored blob so new config fields always have fallbacks
 - Phase 5: list({ prefix: 'site-config.json' }) to locate blob — no URL stored separately
 - Phase 5: addRandomSuffix: false for deterministic blob paths (always overwrites same file)
+- Phase 5 (03): getSiteConfig() called at async page top — content flows as props to all components
+- Phase 5 (03): boardImages map derived dynamically from boards array so config drives images
+- Phase 5 (03): opengraph-image.tsx deferred — edge runtime prevents async getSiteConfig() call
 
 ### Roadmap Evolution
 
@@ -71,6 +74,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-20 18:16
-Stopped at: Completed 05-02-PLAN.md (Phase 5, plan 2 of 5 complete)
+Last session: 2026-02-20
+Stopped at: Completed 05-03-PLAN.md (Phase 5, plan 3 of 5 complete)
 Resume file: None
