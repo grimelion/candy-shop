@@ -19,6 +19,7 @@ None
 - [x] **Phase 3: Order Form & Validation** - Form fields using existing patterns
 - [x] **Phase 3.1: Board Images & Ingredients** - INSERTED: Add photos and ingredients to order page
 - [ ] **Phase 4: WhatsApp Integration** - Connect to WhatsApp Cloud API for notifications
+- [ ] **Phase 5: Admin Panel (CMS)** - Admin UI to edit site texts, images, and order prices
 
 ## Phase Details
 
@@ -68,10 +69,22 @@ Plans:
 Plans:
 - [ ] 04-01: Create WhatsApp server action and integrate into order form
 
+### Phase 5: Admin Panel (CMS)
+**Goal**: Build a password-protected admin UI where the owner can edit site texts, swap locally-stored images, and update board prices on the /order page — no code changes required
+**Depends on**: Phase 4
+**Plans**: 5 plans
+
+Plans:
+- [x] 05-01: Admin auth (middleware + login page + JWT cookie session)
+- [ ] 05-02: Admin layout and dashboard shell
+- [ ] 05-03: TBD
+- [ ] 05-04: TBD
+- [ ] 05-05: TBD
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 3.1 → 4
+Phases execute in numeric order: 1 → 2 → 3 → 3.1 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -80,3 +93,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 3.1 → 4
 | 3. Order Form & Validation | 1/1 | Complete | 2026-01-17 |
 | 3.1. Board Images & Ingredients | 1/1 | Complete | 2026-01-17 |
 | 4. WhatsApp Integration | 0/1 | Not started | - |
+| 5. Admin Panel (CMS) | 1/5 | In progress | - |
